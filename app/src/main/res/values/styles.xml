@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="medsafe_cyc">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">#00E6BD</item>
+        <item name="android:shadowColor">#0D000000</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">4</item>
+        <item name="android:shadowRadius">4</item>
+    </style>
+
+    <style name="medsafe_cycle">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">#00E56A</item>
+        <item name="android:shadowColor">#0D000000</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">4</item>
+        <item name="android:shadowRadius">4</item>
+    </style>
+
+    <style name="selamat_dat">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#001E2B</item>
+    </style>
+
+    <style name="solusi_terp">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#001E2B</item>
+    </style>
+
+    <style name="medsafe_title">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">#001E2B</item>
+    </style>
+
+    <style name="welcome_msg">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#001E2B</item>
+    </style>
+
+</resources>

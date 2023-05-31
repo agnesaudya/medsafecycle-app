@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">MedSafeCycle</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="medsafe">MedSafe</string>
+    <string name="cycle">Cycle!</string>
+    <string name="selamat_dat">Selamat datang di</string>
+    <string name="solusi_terp">Solusi terpercaya untuk pengelolaan\nlimbah medis secara efisien</string>
+    <string name="medsafe_title">MedSafe Cycle</string>
+    <string name="welcome_msg">Mudah digunakan. Anda cukup memfoto\nsampah medis yang ingin anda cari tahu\ninformasinya.\n\nAnda dengan mudahnya bisa mendapatkan\ninformasi klasifikasi dan cara pembuangan\ndari sampah medis tersebut.
+    </string>
 </resources>

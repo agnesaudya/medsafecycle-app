@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FistLandingFragment"
+    android:background="@drawable/landing_1_bg">
+
+
+    <!-- Selamat datang di -->
+
+    <!-- MedSafe Cycle! -->
+
+    <TextView
+        android:id="@+id/selamat_dat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="160dp"
+        android:gravity="top"
+        android:text="@string/selamat_dat"
+        android:textAppearance="@style/selamat_dat"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/medsafe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:gravity="top"
+        android:text="@string/medsafe"
+        android:textAppearance="@style/medsafe_cyc"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selamat_dat" />
+
+    <TextView
+        android:id="@+id/cycle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:gravity="top"
+        android:text="@string/cycle"
+        android:textAppearance="@style/medsafe_cycle"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/medsafe"
+        app:layout_constraintStart_toEndOf="@+id/medsafe" />
+
+    <!-- Solusi terpercaya untuk pengelolaan limbah medis secara efisien -->
+    <TextView
+        android:id="@+id/solusi_terp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:gravity="top"
+        android:text="@string/solusi_terp"
+        android:textAppearance="@style/solusi_terp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/medsafe" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
