@@ -4,13 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FistLandingFragment"
-    android:background="@drawable/landing_1_bg">
+    tools:context=".landing.FirstLandingFragment"
+    >
 
 
     <!-- Selamat datang di -->
 
     <!-- MedSafe Cycle! -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/landing_page_1"/>
 
     <TextView
         android:id="@+id/selamat_dat"
@@ -21,7 +25,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="120dp"
         android:gravity="top"
         android:text="@string/selamat_dat"
         android:textAppearance="@style/selamat_dat"

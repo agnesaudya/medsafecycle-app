@@ -12,6 +12,12 @@
         android:theme="@style/Theme.MedSafeCycle"
         tools:targetApi="31">
         <activity
+            android:name=".home.guest.GuestHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".landing.LandingActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

@@ -9,4 +9,11 @@
     <string name="medsafe_title">MedSafe Cycle</string>
     <string name="welcome_msg">Mudah digunakan. Anda cukup memfoto\nsampah medis yang ingin anda cari tahu\ninformasinya.\n\nAnda dengan mudahnya bisa mendapatkan\ninformasi klasifikasi dan cara pembuangan\ndari sampah medis tersebut.
     </string>
+    <string name="selanjutnya">selanjutnya</string>
+    <string name="pilih_peran">Pilih Peran Anda</string>
+    <string name="pilih_peran_subtitle">Pilihlah peran sesuai tujuan anda</string>
+    <string name="masuk_sebagai">Masuk sebagai</string>
+    <string name="pengguna_biasa">Pengguna\nBiasa</string>
+    <string name="instansi_rumah_sakit">Instansi/ \nRumah Sakit</string>
+    <string name="masuk">masuk</string>
 </resources>
