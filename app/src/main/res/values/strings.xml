@@ -16,4 +16,28 @@
     <string name="pengguna_biasa">Pengguna\nBiasa</string>
     <string name="instansi_rumah_sakit">Instansi/ \nRumah Sakit</string>
     <string name="masuk">masuk</string>
+    <string name="riwayat_scan">Riwayat Scan</string>
+    <string name="rumah_sakit_terdekat">Rumah Sakit Terdekat</string>
+    <string name="cek_rumah_sakit_terdekat">Cek Rumah Sakit Terdekat!</string>
+    <string name="apakah_anda_perlu_membuang_nlimbahnya_di_rumah_sakit">Apakah anda perlu membuang\nlimbahnya di rumah sakit?</string>
+    <string name="hospital_logo">hospital logo</string>
+    <string name="selengkapnya">...Selengkapnya</string>
+
+
+    <!-- TODO: Ini Dummy, Nanti Hapus -->
+    <string-array name="data_jenis">
+        <item>Limbah infeksius</item>
+        <item>Limbah benda tajam</item>
+        <item>Limbah patologis</item>
+        <item>Limbah kimia</item>
+        <item>Limbah benda tajam</item>
+    </string-array>
+    <string-array name="data_tanggal">
+        <item>01/01/2001</item>
+        <item>02/02/2002</item>
+        <item>03/03/2003</item>
+        <item>04/04/2004</item>
+        <item>05/05/2005</item>
+    </string-array>
+    <!-- Batas Hapus -->
 </resources>

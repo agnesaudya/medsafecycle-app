@@ -22,6 +22,7 @@ class LandingActivity : AppCompatActivity() {
 
         val nextButton: Button = findViewById(R.id.to_two)
         nextButton.setOnClickListener {
+
             // if Last Page
             if (viewPager.currentItem == 2){
                 nextButton.text = "selanjutnya"
