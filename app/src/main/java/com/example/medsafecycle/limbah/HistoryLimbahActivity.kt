@@ -1,38 +1,47 @@
-package com.example.medsafecycle.home.guest
+package com.example.medsafecycle.limbah
 
-import android.content.Intent
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
+import android.view.MenuItem
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medsafecycle.R
-import com.example.medsafecycle.landing.LandingActivity
-import com.example.medsafecycle.limbah.HistoryLimbahActivity
-import com.example.medsafecycle.limbah.HistoryLimbahAdapter
-import com.example.medsafecycle.limbah.LimbahDummy
 
-//  TODO : Buat guest, pake shared preference aja ya :) soalnya dia gapunya akun, tapi perlu history
-class GuestHomeActivity : AppCompatActivity() {
+class HistoryLimbahActivity : AppCompatActivity() {
 
     private lateinit var rvLimbah: RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        setContentView(R.layout.activity_history_limbah)
 
         supportActionBar?.hide()
-        rvLimbah = findViewById(R.id.recyclerView)
+
+        //manageToolBar() -> gatau kena error mulu wkwk. nanti gua cek
+
+        rvLimbah = findViewById(R.id.rec_view_history)
         rvLimbah.setHasFixedSize(true)
 
         list.addAll(getListDummy())
         showRecyclerList()
 
-        val toHistory: TextView = findViewById(R.id.to_history_button)
-        toHistory.setOnClickListener {
-            val moveIntent = Intent(this@GuestHomeActivity, HistoryLimbahActivity::class.java)
-            startActivity(moveIntent)
+    }
+
+    private fun manageToolBar(){
+
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setHomeAsUpIndicator(R.drawable.back_icon)
+            title = "Custom Title"
         }
     }
+
+
 
     // TODO : Jangan lupa sesuain ini sama output API, terutama bagian pas nambahin list
     private fun showRecyclerList() {
@@ -55,12 +64,7 @@ class GuestHomeActivity : AppCompatActivity() {
             listDummy.add(dummy)
         }
 
-        // Di halaman ini cuma perlu max 3
-        if(listDummy.size > 3){
-            return ArrayList(listDummy.subList(0, 3))
-        } else {
-            return listDummy
-        }
-    }
+        return listDummy
 
+    }
 }

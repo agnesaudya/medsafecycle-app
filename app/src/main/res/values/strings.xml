@@ -22,6 +22,13 @@
     <string name="apakah_anda_perlu_membuang_nlimbahnya_di_rumah_sakit">Apakah anda perlu membuang\nlimbahnya di rumah sakit?</string>
     <string name="hospital_logo">hospital logo</string>
     <string name="selengkapnya">...Selengkapnya</string>
+    <string name="jenis_limbah">Jenis Limbah</string>
+    <string name="dummy_jenis">Limbah Benda Tajam</string>
+    <string name="cara_pembuangan">Cara Pembuangan</string>
+    <string name="dummy_cara_pembuangan">Pembuangan limbah benda tajam harus dilakukan dengan hati-hati. Tempatkan benda tajam dalam wadah yang kuat dan tahan tusukan, seperti kotak limbah khusus. Jangan mencampur dengan sampah lainnya. Tandai wadah dan hindari memodifikasinya. Bawa wadah ke tempat pembuangan limbah medis yang aman atau konsultasikan dengan pihak berwenang setempat.</string>
+    <string name="tentang_limbah">Tentang Limbah</string>
+    <string name="dummy_deskripsi">Limbah benda tajam adalah jenis limbah yang memiliki ujung atau tepi yang tajam atau menusuk. Ini termasuk dalam kategori limbah medis atau kesehatan yang dihasilkan dari aktivitas seperti perawatan kesehatan, pengobatan, atau prosedur medis. Contoh umum limbah benda tajam meliputi jarum suntik, pisau bedah, pecahan kaca, atau alat-alat medis lainnya yang dapat menyebabkan luka atau cedera jika tidak ditangani dengan hati-hati. Penting untuk membuang limbah benda tajam dengan aman untuk mencegah penularan penyakit atau cedera pada orang lain dan pekerja pengelola sampah.</string>
+    <string name="selesai">selesai</string>
 
 
     <!-- TODO: Ini Dummy, Nanti Hapus -->

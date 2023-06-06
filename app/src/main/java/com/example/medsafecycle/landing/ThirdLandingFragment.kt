@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import com.example.medsafecycle.R
 import com.example.medsafecycle.home.guest.GuestHomeActivity
 
@@ -54,6 +55,11 @@ class ThirdLandingFragment : Fragment() {
             val guestIntent = Intent(requireContext(), GuestHomeActivity::class.java)
             startActivity(guestIntent)
             activity?.finish()
+        }
+
+        // TODO : Redirect to Login
+        rsButton.setOnClickListener {
+            Toast.makeText(context,"Feature Coming Soon!", Toast.LENGTH_SHORT).show()
         }
 
     }

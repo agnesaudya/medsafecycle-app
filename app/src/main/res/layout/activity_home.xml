@@ -56,7 +56,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <!-- History ReyclerView -->
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="391dp"

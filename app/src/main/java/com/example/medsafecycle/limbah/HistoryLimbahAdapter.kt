@@ -1,4 +1,4 @@
-package com.example.medsafecycle.home.guest
+package com.example.medsafecycle.limbah
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medsafecycle.R
-import com.example.medsafecycle.limbah.LimbahDummy
 
 // TODO : Modifikasi sesuai API yaa
 

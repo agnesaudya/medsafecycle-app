@@ -25,15 +25,11 @@ class LandingActivity : AppCompatActivity() {
 
             // if Last Page
             if (viewPager.currentItem == 2){
-                nextButton.text = "selanjutnya"
                 viewPager.currentItem = 0
 
             } else {
                 val nextPage = viewPager.currentItem + 1
                 viewPager.currentItem = nextPage
-                if(nextPage == 2){
-                    nextButton.text = "kembali"
-                }
             }
         }
     }
