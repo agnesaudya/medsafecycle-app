@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import com.example.medsafecycle.R
 import com.example.medsafecycle.home.guest.GuestHomeActivity
 
@@ -47,9 +48,9 @@ class ThirdLandingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val rsButton: Button = view.findViewById(R.id.masuk_instansi)
+        val rsButton: CardView = view.findViewById(R.id.masuk_instansi)
 
-        val guestButton: Button = view.findViewById(R.id.masuk_guest)
+        val guestButton: CardView = view.findViewById(R.id.masuk_guest)
 
         guestButton.setOnClickListener {
             val guestIntent = Intent(requireContext(), GuestHomeActivity::class.java)

@@ -97,6 +97,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/to_history_button" />
 
 
+            <!-- Redirect Hospital Terdekat -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/redirect_nearest_hospital"
                 android:layout_width="match_parent"
