@@ -19,11 +19,28 @@
         android:id="@+id/to_two"
         android:layout_width="240dp"
         android:layout_height="44dp"
-        android:layout_marginBottom="32dp"
-        android:text="@string/selanjutnya"
-        app:layout_constraintBottom_toBottomOf="@+id/view_pager"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/landing_button"
+        android:text="@string/selanjutnya"
+        app:layout_constraintBottom_toTopOf="@+id/spring_dots_indicator"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
+        android:id="@+id/spring_dots_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        app:dampingRatio="0.5"
+        app:dotsColor="@color/dark_teal"
+        app:dotsCornerRadius="2dp"
+        app:dotsSize="16dp"
+        app:dotsSpacing="6dp"
+        app:dotsStrokeColor="@color/dark_teal"
+        app:dotsStrokeWidth="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_pager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:stiffness="300" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

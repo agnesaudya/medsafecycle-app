@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.viewpager2.widget.ViewPager2
 import com.example.medsafecycle.R
+import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
 
 class LandingActivity : AppCompatActivity() {
 
@@ -19,11 +21,12 @@ class LandingActivity : AppCompatActivity() {
 
         val adapter = LandingPagerAdapter(supportFragmentManager, lifecycle, fragments)
         viewPager.adapter = adapter
+        val dotsIndicator : SpringDotsIndicator = findViewById(R.id.spring_dots_indicator)
+        dotsIndicator.attachTo(viewPager)
 
         val nextButton: Button = findViewById(R.id.to_two)
         nextButton.setOnClickListener {
 
-            // if Last Page
             if (viewPager.currentItem == 2){
                 viewPager.currentItem = 0
 
