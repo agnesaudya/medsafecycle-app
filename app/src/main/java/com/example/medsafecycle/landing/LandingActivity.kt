@@ -15,12 +15,16 @@ class LandingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_landing)
 
         supportActionBar?.hide()
+        setUpViewPager()
+    }
 
+    private fun setUpViewPager(){
         val viewPager: ViewPager2 = findViewById(R.id.view_pager)
         val fragments = listOf(FirstLandingFragment(), SecondLandingFragment(), ThirdLandingFragment())
 
         val adapter = LandingPagerAdapter(supportFragmentManager, lifecycle, fragments)
         viewPager.adapter = adapter
+
         val dotsIndicator : SpringDotsIndicator = findViewById(R.id.spring_dots_indicator)
         dotsIndicator.attachTo(viewPager)
 

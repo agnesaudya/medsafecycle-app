@@ -22,12 +22,16 @@ class HistoryLimbahActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
+        setUpRv()
+        manageToolbar()
+    }
+
+    private fun setUpRv(){
         rvLimbah = findViewById(R.id.rec_view_history)
         rvLimbah.setHasFixedSize(true)
 
         list.addAll(getListDummy())
         showRecyclerList()
-        manageToolbar()
     }
 
     private fun manageToolbar(){
@@ -48,8 +52,6 @@ class HistoryLimbahActivity : AppCompatActivity() {
         }
         toolbar.addView(customToolbar)
     }
-
-
 
     // TODO : Jangan lupa sesuain ini sama output API, terutama bagian pas nambahin list
     private fun showRecyclerList() {
