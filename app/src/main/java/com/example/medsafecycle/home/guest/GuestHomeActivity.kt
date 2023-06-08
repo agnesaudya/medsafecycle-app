@@ -21,12 +21,20 @@ class GuestHomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
 
         supportActionBar?.hide()
+
+        setUpButton()
+        setUpRecyclerView()
+    }
+
+    private fun setUpRecyclerView(){
         rvLimbah = findViewById(R.id.recyclerView)
         rvLimbah.setHasFixedSize(true)
 
         list.addAll(getListDummy())
         showRecyclerList()
+    }
 
+    private fun setUpButton(){
         val toHistory: TextView = findViewById(R.id.to_history_button)
         toHistory.setOnClickListener {
             val moveIntent = Intent(this@GuestHomeActivity, HistoryLimbahActivity::class.java)
@@ -55,7 +63,7 @@ class GuestHomeActivity : AppCompatActivity() {
             listDummy.add(dummy)
         }
 
-        // Di halaman ini cuma perlu max 3
+        // TODO : Di halaman ini cuma perlu max 3, nanti sesuain yaa
         if(listDummy.size > 3){
             return ArrayList(listDummy.subList(0, 3))
         } else {

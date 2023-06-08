@@ -3,7 +3,10 @@ package com.example.medsafecycle.limbah
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.MenuItem
+import android.widget.ImageButton
+import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,29 +22,36 @@ class HistoryLimbahActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        //manageToolBar() -> gatau kena error mulu wkwk. nanti gua cek
+        setUpRv()
+        manageToolbar()
+    }
 
+    private fun setUpRv(){
         rvLimbah = findViewById(R.id.rec_view_history)
         rvLimbah.setHasFixedSize(true)
 
         list.addAll(getListDummy())
         showRecyclerList()
-
     }
 
-    private fun manageToolBar(){
-
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+    private fun manageToolbar(){
+        val toolbar : Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            setHomeAsUpIndicator(R.drawable.back_icon)
-            title = "Custom Title"
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        val inflater: LayoutInflater = LayoutInflater.from(this)
+        val customToolbar = inflater.inflate(R.layout.basic_toolbar, toolbar, false)
+
+        val back: ImageButton = customToolbar.findViewById(R.id.back_button)
+        val barTitle: TextView = customToolbar.findViewById(R.id.toolbar_title)
+
+        barTitle.text = "Riwayat Scan"
+        back.setOnClickListener {
+            finish()
         }
+        toolbar.addView(customToolbar)
     }
-
-
 
     // TODO : Jangan lupa sesuain ini sama output API, terutama bagian pas nambahin list
     private fun showRecyclerList() {

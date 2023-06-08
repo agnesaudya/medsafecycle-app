@@ -58,9 +58,9 @@
             <!-- History ReyclerView -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
-                android:layout_width="391dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/riwayat_scan" />
@@ -72,12 +72,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="84dp"
                 android:gravity="top"
                 android:text="@string/selengkapnya"
                 android:textColor="@color/light_green"
                 android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/recyclerView"
                 app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
             <!-- Scan History -->
@@ -97,6 +96,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/to_history_button" />
 
 
+            <!-- Redirect Hospital Terdekat -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/redirect_nearest_hospital"
                 android:layout_width="match_parent"
