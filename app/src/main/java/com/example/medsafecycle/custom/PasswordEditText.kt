@@ -24,7 +24,7 @@ class PasswordEditText  : AppCompatEditText, View.OnTouchListener {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        hint = "Masukkan Password Anda"
+        hint = "Enter Your Password"
         textAlignment = TEXT_ALIGNMENT_VIEW_START
     }
 

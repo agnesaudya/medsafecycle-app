@@ -23,6 +23,8 @@ interface ApiService {
         @Field("email") email: String,
         @Field("password") password: String
     ): Call<AuthResponse>
+
+}
 //
 //
 //    @Multipart
@@ -33,22 +35,7 @@ interface ApiService {
 //    ): Call<AddStoryResponse>
 //
 //
-//    @GET("stories")
-//    suspend fun getAllStories(
-//        @Header("Authorization") token: String,
-//        @Query("page") page: Int,
-//        @Query("size") size: Int
+//    @GET("companies")
+//    suspend fun getAllCompanies(
+//        @Header("x-access-token") token: String,
 //    ): StoriesResponse
-//
-//    @GET("stories")
-//    fun getAllLocation(
-//        @Query("location") location: Int,
-//    ): Call<LocationResponse>
-//
-//
-//    @GET("stories/{id}")
-//    fun getStoryById(@Path("id") id: String
-//    ): Call<DetailStoryResponse>
-//
-
-}

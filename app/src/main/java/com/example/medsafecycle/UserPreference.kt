@@ -2,10 +2,11 @@ package com.example.medsafecycle
 
 import android.content.Context
 
-internal class TokenPreference(context: Context) {
+internal class UserPreference(context: Context) {
     companion object {
         private const val PREFS_NAME = "user_pref"
         private const val TOKEN = "token"
+        private const val ROLE = "guest"
 
 
     }
@@ -17,7 +18,14 @@ internal class TokenPreference(context: Context) {
         editor.apply()
     }
 
-    fun removeToken(){
+    fun setRole(role: String){
+        val editor = preferences.edit()
+        editor.putString(ROLE,role)
+
+        editor.apply()
+    }
+
+    fun removePref(){
         val editor = preferences.edit()
         editor.clear()
 
@@ -26,6 +34,13 @@ internal class TokenPreference(context: Context) {
     fun getToken(): String? {
 
         return preferences.getString(TOKEN, "")
+
+
+    }
+
+    fun getRole(): String? {
+
+        return preferences.getString(ROLE, "")
 
 
     }

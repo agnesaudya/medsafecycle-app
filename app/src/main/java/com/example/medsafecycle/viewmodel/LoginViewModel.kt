@@ -3,6 +3,7 @@ package com.example.medsafecycle.viewmodel
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.medsafecycle.AuthResponse
 import com.example.medsafecycle.config.ApiConfig
 import com.google.gson.Gson
@@ -10,7 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class LoginViewModel {
+class LoginViewModel  : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
     private val _loginResponse = MutableLiveData<AuthResponse>()
