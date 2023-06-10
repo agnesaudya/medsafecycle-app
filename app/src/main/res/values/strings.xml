@@ -32,7 +32,7 @@
 
     <string-array name="type_user">
         <item>Hospital</item>
-        <item>Perusahaan</item>
+        <!--        <item>Perusahaan</item>-->
     </string-array>
     <!-- TODO: Ini Dummy, Nanti Hapus -->
     <string-array name="data_jenis">

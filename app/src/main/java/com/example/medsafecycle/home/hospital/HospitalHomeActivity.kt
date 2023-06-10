@@ -1,27 +1,24 @@
-package com.example.medsafecycle.home.guest
+package com.example.medsafecycle.home.hospital
 
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medsafecycle.R
-import com.example.medsafecycle.landing.LandingActivity
+import com.example.medsafecycle.auth.RegisterActivity
 import com.example.medsafecycle.limbah.HistoryLimbahActivity
 import com.example.medsafecycle.limbah.HistoryLimbahAdapter
 import com.example.medsafecycle.limbah.LimbahDummy
 
-//  TODO : Buat guest, pake shared preference aja ya :) soalnya dia gapunya akun, tapi perlu history
-class GuestHomeActivity : AppCompatActivity() {
-
+class HospitalHomeActivity : AppCompatActivity() {
     private lateinit var rvLimbah: RecyclerView
     private lateinit var textRedirect: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        setContentView(R.layout.activity_hospital_home)
 
         supportActionBar?.hide()
 
@@ -30,18 +27,29 @@ class GuestHomeActivity : AppCompatActivity() {
 
         textRedirect = findViewById(R.id.redirect_to_gmaps)
         textRedirect.setOnClickListener {
+//            val query = "New York City"
+//
+//            val gmmIntentUri = Uri.parse("geo:0,0?q=${Uri.encode(query)}")
+//
+//            val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+//            mapIntent.`package` =
+//                "com.google.android.apps.maps"
+//
+//            if (mapIntent.resolveActivity(packageManager) != null) {
+//
+//                startActivity(mapIntent)
+//            }
 
-            val query = "Perusahaan Limbah Terdekat"
+            val query = "New York City"
             val gmmIntentUri = Uri.parse("geo:0,0?q=${Uri.encode(query)}")
 
-
+// Create an Intent from gmmIntentUri. Set the action to ACTION_VIEW
             val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
-
+// Make the Intent explicit by setting the Google Maps package
             mapIntent.setPackage("com.google.android.apps.maps")
-            mapIntent.resolveActivity(packageManager)?.let {
-                startActivity(mapIntent)
-            }
 
+// Attempt to start an activity that can handle the Intent
+            startActivity(mapIntent)
         }
     }
 
@@ -56,7 +64,7 @@ class GuestHomeActivity : AppCompatActivity() {
     private fun setUpButton(){
         val toHistory: TextView = findViewById(R.id.to_history_button)
         toHistory.setOnClickListener {
-            val moveIntent = Intent(this@GuestHomeActivity, HistoryLimbahActivity::class.java)
+            val moveIntent = Intent(this, HistoryLimbahActivity::class.java)
             startActivity(moveIntent)
         }
     }

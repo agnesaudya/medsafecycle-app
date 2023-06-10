@@ -4,29 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.guest.GuestHomeActivity">
+    tools:context=".home.hospital.HospitalHomeActivity">
 
+    <!-- Camera Button -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/camera_button"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="-40dp"
+        app:cardCornerRadius="40dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/bg_img_container"
+        app:layout_constraintStart_toStartOf="@+id/bg_img_container"
+        app:layout_constraintTop_toBottomOf="@+id/bg_img_container">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@drawable/icon_camera" />
 
-        <!-- Camera Button -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/camera_button"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="-40dp"
-            app:cardCornerRadius="40dp"
-            app:cardElevation="8dp"
-            app:layout_constraintEnd_toEndOf="@+id/bg_img_container"
-            app:layout_constraintStart_toStartOf="@+id/bg_img_container"
-            app:layout_constraintTop_toBottomOf="@+id/bg_img_container">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerInside"
-                android:src="@drawable/icon_camera" />
-
-        </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 
     <ScrollView
@@ -152,7 +150,6 @@
                         android:textColor="@color/white"
                         android:textSize="12sp"
                         android:textStyle="bold"
-                        android:clickable="true"
                         app:layout_constraintStart_toEndOf="@+id/hospital_img"
                         app:layout_constraintTop_toBottomOf="@+id/text_redirect_hospital" />
 
