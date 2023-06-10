@@ -35,7 +35,7 @@ class GuestHomeActivity : AppCompatActivity() {
         textRedirect = findViewById(R.id.redirect_nearest_hospital)
         textRedirect.setOnClickListener {
 
-            val query = "Perusahaan Limbah Medis Terdekat"
+            val query = "Rumah Sakit Terdekat"
             val gmmIntentUri = Uri.parse("geo:0,0?q=${Uri.encode(query)}")
 
 

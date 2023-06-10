@@ -32,6 +32,9 @@
     <string name="daftarkan_instansi_anda">Daftarkan Instansi Anda!</string>
     <string name="cek_di_sini">cek di sini!</string>
     <string name="apakah_anda_ingin_mendaftarkan_ninstansi_rumah_sakit_anda">Apakah anda ingin mendaftarkan\ninstansi / rumah sakit anda?</string>
+    <string name="cek_perusahaan_limbah_terdekat">Cek Perusahaan Limbah Terdekat!</string>
+    <string name="mencari_perusahaan_pengolah_limbah">Mencari perusahaan pengolah limbah?</string>
+    <string name="cek_di_sini_">cek di sini!</string>
 
     <string-array name="type_user">
         <item>Hospital</item>

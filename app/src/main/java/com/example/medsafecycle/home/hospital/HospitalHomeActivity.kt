@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medsafecycle.R
@@ -15,7 +16,7 @@ import com.example.medsafecycle.limbah.LimbahDummy
 
 class HospitalHomeActivity : AppCompatActivity() {
     private lateinit var rvLimbah: RecyclerView
-    private lateinit var textRedirect: TextView
+    private lateinit var textRedirect: CardView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hospital_home)
@@ -25,9 +26,9 @@ class HospitalHomeActivity : AppCompatActivity() {
         setUpButton()
         setUpRecyclerView()
 
-        textRedirect = findViewById(R.id.redirect_to_gmaps)
+        textRedirect = findViewById(R.id.redirect_nearest_waste_company)
         textRedirect.setOnClickListener {
-            val query = "Perusahaan Limbah Terdekat"
+            val query = "Perusahaan Limbah Medis Terdekat"
             val gmmIntentUri = Uri.parse("geo:0,0?q=${Uri.encode(query)}")
 
 

@@ -1,195 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".home.hospital.HospitalHomeActivity">
-
-    <!-- Camera Button -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/camera_button"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="-40dp"
-        app:cardCornerRadius="40dp"
-        app:cardElevation="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/bg_img_container"
-        app:layout_constraintStart_toStartOf="@+id/bg_img_container"
-        app:layout_constraintTop_toBottomOf="@+id/bg_img_container">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerInside"
-            android:src="@drawable/icon_camera" />
-
-    </androidx.cardview.widget.CardView>
-
-
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bg_img_container">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <!-- Scan History -->
-            <TextView
-                android:id="@+id/riwayat_scan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="24dp"
-                android:gravity="top"
-                android:text="@string/riwayat_scan"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <!-- History ReyclerView -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/riwayat_scan" />
-
-            <!-- Redirect to History -->
-            <TextView
-                android:id="@+id/to_history_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="16dp"
-                android:gravity="top"
-                android:text="@string/selengkapnya"
-                android:textColor="@color/light_green"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="@+id/recyclerView"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
-
-            <!-- Scan History -->
-            <TextView
-                android:id="@+id/rs_terdekat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:gravity="top"
-                android:text="@string/rumah_sakit_terdekat"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/to_history_button" />
-
-
-            <!-- Redirect Hospital Terdekat -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/redirect_nearest_hospital"
-                android:layout_width="match_parent"
-                android:layout_height="112dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="16dp"
-                app:cardBackgroundColor="@color/darker_teal"
-                app:cardCornerRadius="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rs_terdekat">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="8dp">
-
-
-                    <TextView
-                        android:id="@+id/title_redirect_hospital"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/cek_rumah_sakit_terdekat"
-                        android:textColor="@color/lighter_green"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toEndOf="@+id/hospital_img"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/text_redirect_hospital"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_toEndOf="@id/hospital_img"
-                        android:text="@string/apakah_anda_perlu_membuang_nlimbahnya_di_rumah_sakit"
-                        android:textColor="@color/white"
-                        android:textSize="12sp"
-                        app:layout_constraintStart_toEndOf="@+id/hospital_img"
-                        app:layout_constraintTop_toBottomOf="@+id/title_redirect_hospital" />
-
-                    <TextView
-                        android:id="@+id/redirect_to_gmaps"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:text="cek di sini!"
-                        android:textColor="@color/white"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toEndOf="@+id/hospital_img"
-                        app:layout_constraintTop_toBottomOf="@+id/text_redirect_hospital" />
-
-                    <ImageView
-                        android:id="@+id/hospital_img"
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
-                        android:layout_marginStart="16dp"
-                        android:src="@drawable/hospital_pic"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:contentDescription="@string/hospital_logo" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.cardview.widget.CardView>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </ScrollView>
-
-    <!-- Background Image -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/bg_img_container"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="260dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/bg_img"
+        <!-- Camera Button -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/camera_button"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="-40dp"
+            app:cardCornerRadius="40dp"
+            app:cardElevation="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/bg_img_container"
+            app:layout_constraintStart_toStartOf="@+id/bg_img_container"
+            app:layout_constraintTop_toBottomOf="@+id/bg_img_container">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_camera" />
+
+        </androidx.cardview.widget.CardView>
+
+
+        <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/menu_image_decor" />
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bg_img_container">
 
-    </androidx.cardview.widget.CardView>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <!-- Scan History -->
+                <TextView
+                    android:id="@+id/riwayat_scan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="24dp"
+                    android:gravity="top"
+                    android:text="@string/riwayat_scan"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- History ReyclerView -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/riwayat_scan" />
+
+                <!-- Redirect to History -->
+                <TextView
+                    android:id="@+id/to_history_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="16dp"
+                    android:gravity="top"
+                    android:text="@string/selengkapnya"
+                    android:textColor="@color/light_green"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="@+id/recyclerView"
+                    app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+
+                <!-- Scan History -->
+                <TextView
+                    android:id="@+id/rs_terdekat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:gravity="top"
+                    android:text="@string/rumah_sakit_terdekat"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/to_history_button" />
 
 
+                <!-- Redirect Hospital Terdekat -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/redirect_nearest_waste_company"
+                    android:layout_width="match_parent"
+                    android:layout_height="112dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="8dp"
+                    app:cardBackgroundColor="@color/darker_green"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rs_terdekat">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="8dp">
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                        <TextView
+                            android:id="@+id/title_redirect_waste_company"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="8dp"
+                            android:text="@string/cek_perusahaan_limbah_terdekat"
+                            android:textColor="@color/lighter_green"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/car_img"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/text_redirect_waste_company"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_toEndOf="@id/car_img"
+                            android:text="@string/mencari_perusahaan_pengolah_limbah"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toEndOf="@+id/car_img"
+                            app:layout_constraintTop_toBottomOf="@+id/title_redirect_waste_company" />
+
+                        <TextView
+                            android:id="@+id/redirect_waste_company"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/cek_di_sini_"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="@+id/title_redirect_waste_company"
+                            app:layout_constraintTop_toBottomOf="@+id/text_redirect_waste_company" />
+
+                        <ImageView
+                            android:id="@+id/car_img"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:layout_marginStart="8dp"
+                            android:contentDescription="@string/hospital_logo"
+                            android:src="@drawable/car"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <!-- Background Image -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/bg_img_container"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/bg_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/menu_image_decor_hospital" />
+
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
