@@ -13,4 +13,6 @@
     <color name="light_teal">#00C5AD</color>
     <color name="light_green">#00C57E</color>
     <color name="lighter_green">#7CFFC0</color>
+    <color name="light_blue">#29FFF2</color>
+    <color name="darker_blue">#007E7E</color>
 </resources>

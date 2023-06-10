@@ -29,6 +29,9 @@
     <string name="tentang_limbah">Tentang Limbah</string>
     <string name="dummy_deskripsi">Limbah benda tajam adalah jenis limbah yang memiliki ujung atau tepi yang tajam atau menusuk. Ini termasuk dalam kategori limbah medis atau kesehatan yang dihasilkan dari aktivitas seperti perawatan kesehatan, pengobatan, atau prosedur medis. Contoh umum limbah benda tajam meliputi jarum suntik, pisau bedah, pecahan kaca, atau alat-alat medis lainnya yang dapat menyebabkan luka atau cedera jika tidak ditangani dengan hati-hati. Penting untuk membuang limbah benda tajam dengan aman untuk mencegah penularan penyakit atau cedera pada orang lain dan pekerja pengelola sampah.</string>
     <string name="selesai">selesai</string>
+    <string name="daftarkan_instansi_anda">Daftarkan Instansi Anda!</string>
+    <string name="cek_di_sini">cek di sini!</string>
+    <string name="apakah_anda_ingin_mendaftarkan_ninstansi_rumah_sakit_anda">Apakah anda ingin mendaftarkan\ninstansi / rumah sakit anda?</string>
 
     <string-array name="type_user">
         <item>Hospital</item>
