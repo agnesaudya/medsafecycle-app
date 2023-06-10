@@ -27,29 +27,17 @@ class HospitalHomeActivity : AppCompatActivity() {
 
         textRedirect = findViewById(R.id.redirect_to_gmaps)
         textRedirect.setOnClickListener {
-//            val query = "New York City"
-//
-//            val gmmIntentUri = Uri.parse("geo:0,0?q=${Uri.encode(query)}")
-//
-//            val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
-//            mapIntent.`package` =
-//                "com.google.android.apps.maps"
-//
-//            if (mapIntent.resolveActivity(packageManager) != null) {
-//
-//                startActivity(mapIntent)
-//            }
-
-            val query = "New York City"
+            val query = "Perusahaan Limbah Terdekat"
             val gmmIntentUri = Uri.parse("geo:0,0?q=${Uri.encode(query)}")
 
-// Create an Intent from gmmIntentUri. Set the action to ACTION_VIEW
-            val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
-// Make the Intent explicit by setting the Google Maps package
-            mapIntent.setPackage("com.google.android.apps.maps")
 
-// Attempt to start an activity that can handle the Intent
-            startActivity(mapIntent)
+            val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+
+            mapIntent.setPackage("com.google.android.apps.maps")
+            mapIntent.resolveActivity(packageManager)?.let {
+                startActivity(mapIntent)
+            }
+
         }
     }
 

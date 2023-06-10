@@ -1,6 +1,7 @@
 package com.example.medsafecycle.auth
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -50,6 +51,12 @@ class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(binding.root.windowToken, 0)
 
+        }
+
+        binding.moveLogin.setOnClickListener {
+            val moveIntent = Intent(this, LoginActivity::class.java)
+            startActivity(moveIntent)
+            finish()
         }
 
 
