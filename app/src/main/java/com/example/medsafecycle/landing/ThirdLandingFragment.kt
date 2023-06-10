@@ -59,9 +59,7 @@ class ThirdLandingFragment : Fragment() {
             activity?.finish()
         }
 
-        // TODO : Redirect to Login
         rsButton.setOnClickListener {
-            Toast.makeText(context,"Feature Coming Soon!", Toast.LENGTH_SHORT).show()
             val i = Intent(requireContext(), LoginActivity::class.java)
             startActivity(i)
             activity?.finish()

@@ -1,41 +1,33 @@
-package com.example.medsafecycle.home.guest
+package com.example.medsafecycle.home.hospital
 
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medsafecycle.R
-import com.example.medsafecycle.auth.LoginActivity
 import com.example.medsafecycle.auth.RegisterActivity
-import com.example.medsafecycle.landing.LandingActivity
 import com.example.medsafecycle.limbah.HistoryLimbahActivity
 import com.example.medsafecycle.limbah.HistoryLimbahAdapter
 import com.example.medsafecycle.limbah.LimbahDummy
 
-//  TODO : Buat guest, pake shared preference aja ya :) soalnya dia gapunya akun, tapi perlu history
-class GuestHomeActivity : AppCompatActivity() {
-
+class HospitalHomeActivity : AppCompatActivity() {
     private lateinit var rvLimbah: RecyclerView
-    private lateinit var textRedirect: CardView
-    private lateinit var registerRedirect: CardView
+    private lateinit var textRedirect: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        setContentView(R.layout.activity_hospital_home)
 
         supportActionBar?.hide()
 
         setUpButton()
         setUpRecyclerView()
 
-        textRedirect = findViewById(R.id.redirect_nearest_hospital)
+        textRedirect = findViewById(R.id.redirect_to_gmaps)
         textRedirect.setOnClickListener {
-
-            val query = "Perusahaan Limbah Medis Terdekat"
+            val query = "Perusahaan Limbah Terdekat"
             val gmmIntentUri = Uri.parse("geo:0,0?q=${Uri.encode(query)}")
 
 
@@ -46,13 +38,6 @@ class GuestHomeActivity : AppCompatActivity() {
                 startActivity(mapIntent)
             }
 
-        }
-
-        registerRedirect = findViewById(R.id.redirect_register)
-        registerRedirect.setOnClickListener {
-            val i = Intent(this@GuestHomeActivity, RegisterActivity::class.java)
-            startActivity(i)
-            finish()
         }
     }
 
@@ -67,7 +52,7 @@ class GuestHomeActivity : AppCompatActivity() {
     private fun setUpButton(){
         val toHistory: TextView = findViewById(R.id.to_history_button)
         toHistory.setOnClickListener {
-            val moveIntent = Intent(this@GuestHomeActivity, HistoryLimbahActivity::class.java)
+            val moveIntent = Intent(this, HistoryLimbahActivity::class.java)
             startActivity(moveIntent)
         }
     }

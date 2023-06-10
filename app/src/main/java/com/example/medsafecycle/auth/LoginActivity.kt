@@ -56,6 +56,7 @@ class LoginActivity : AppCompatActivity() {
         binding.moveRegister.setOnClickListener {
             val moveIntent = Intent(this, RegisterActivity::class.java)
             startActivity(moveIntent)
+            finish()
 
         }
     }
