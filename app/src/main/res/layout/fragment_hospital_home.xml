@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.hospital.HospitalHomeActivity">
+    tools:context=".home.hospital.HospitalHomeFragment">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -92,7 +92,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
                     android:gravity="top"
-                    android:text="@string/rumah_sakit_terdekat"
+                    android:text="@string/perusahaan_limbah_terdekat"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"

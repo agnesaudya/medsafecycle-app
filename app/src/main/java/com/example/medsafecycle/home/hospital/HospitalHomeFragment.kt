@@ -8,14 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.medsafecycle.R
-import com.example.medsafecycle.databinding.ActivityHospitalHomeBinding
+import com.example.medsafecycle.databinding.FragmentHospitalHomeBinding
 import com.example.medsafecycle.limbah.HistoryLimbahActivity
 import com.example.medsafecycle.limbah.HistoryLimbahAdapter
 import com.example.medsafecycle.limbah.LimbahDummy
 
-class HospitalHomeActivity : Fragment() {
+class HospitalHomeFragment : Fragment() {
 
-    private var _binding: ActivityHospitalHomeBinding? = null
+    private var _binding: FragmentHospitalHomeBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -23,15 +23,13 @@ class HospitalHomeActivity : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = ActivityHospitalHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentHospitalHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //setContentView(R.layout.activity_hospital_home)
-//        supportActionBar?.hide()
 
         setUpButton()
         setUpRecyclerView()
