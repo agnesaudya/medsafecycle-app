@@ -55,6 +55,10 @@
         <item>04/04/2004</item>
         <item>05/05/2005</item>
     </string-array>
+    <string name="title_activity_hospital_home_base">HospitalHomeActivityBase</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 
 
     <!-- Batas Hapus -->
