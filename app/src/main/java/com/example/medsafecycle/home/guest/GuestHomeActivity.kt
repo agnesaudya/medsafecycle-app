@@ -16,6 +16,7 @@ import com.example.medsafecycle.landing.LandingActivity
 import com.example.medsafecycle.limbah.HistoryLimbahActivity
 import com.example.medsafecycle.limbah.HistoryLimbahAdapter
 import com.example.medsafecycle.limbah.LimbahDummy
+import com.example.medsafecycle.limbah.LimbahNotFoundActivity
 
 //  TODO : Buat guest, pake shared preference aja ya :) soalnya dia gapunya akun, tapi perlu history
 class GuestHomeActivity : AppCompatActivity() {
@@ -54,6 +55,18 @@ class GuestHomeActivity : AppCompatActivity() {
             startActivity(i)
             finish()
         }
+
+        // TODO : Button gua pake buat redirectNotFound, ganti ae
+        val cameraButton: CardView = findViewById(R.id.camera_button)
+        cameraButton.setOnClickListener {
+            redirectResultNotFound()
+        }
+
+    }
+
+    private fun redirectResultNotFound() {
+        val i = Intent(this@GuestHomeActivity, LimbahNotFoundActivity::class.java)
+        startActivity(i)
     }
 
     private fun setUpRecyclerView(){

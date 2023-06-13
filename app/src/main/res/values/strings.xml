@@ -68,6 +68,11 @@
     <string name="hospital_dummy_gmail_com">hospital.dummy@gmail.com</string>
     <string name="logout">logout</string>
     <string name="profile">Profile</string>
+    <string name="mohon_maaf">Mohon maaf,</string>
+    <string name="kami_tidak_bisa_mengkategorikan_limbahmu">Kami tidak bisa mengkategorikan limbahmu.</string>
+    <string name="kemungkinan_limbahmu_ntermasuk_dalam_limbah_yang_nbelum_bisa_dikategorikan_naplikasi_medsafecycle">Kemungkinan, limbahmu termasuk dalam limbah yang\nbelum bisa dikategorikan aplikasi MedSafeCycle.</string>
+    <string name="atau_anda_bisa_mencoba_lagi_dengan_foto_yang_berbeda">Atau, Anda bisa mencoba lagi dengan foto yang berbeda</string>
+    <string name="kembali">kembali</string>
 
 
     <!-- Batas Hapus -->
