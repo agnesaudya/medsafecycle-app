@@ -14,7 +14,7 @@ import com.example.medsafecycle.AuthResponse
 
 import com.example.medsafecycle.UserPreference
 import com.example.medsafecycle.databinding.ActivityLoginBinding
-import com.example.medsafecycle.home.hospital.HospitalHomeActivity
+import com.example.medsafecycle.home.hospital.HospitalHomeActivityBase
 import com.example.medsafecycle.viewmodel.LoginViewModel
 
 
@@ -85,7 +85,7 @@ class LoginActivity : AppCompatActivity() {
 //            finish()
 
             // TODO : Tambahan avel buat bikin home. Ubah ajaa gapapa
-            val moveIntent = Intent(this@LoginActivity, HospitalHomeActivity::class.java)
+            val moveIntent = Intent(this@LoginActivity, HospitalHomeActivityBase::class.java)
             startActivity(moveIntent)
             finish()
         }
