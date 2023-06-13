@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import androidx.cardview.widget.CardView
 
 import com.example.medsafecycle.R
 
@@ -15,7 +16,7 @@ class DetailLimbahActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_limbah)
 
-        val done : Button = findViewById(R.id.selesai)
+        val done : CardView = findViewById(R.id.selesai)
         done.setOnClickListener {
             finish()
         }

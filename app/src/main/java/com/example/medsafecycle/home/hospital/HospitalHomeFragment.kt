@@ -12,6 +12,7 @@ import com.example.medsafecycle.databinding.FragmentHospitalHomeBinding
 import com.example.medsafecycle.limbah.HistoryLimbahActivity
 import com.example.medsafecycle.limbah.HistoryLimbahAdapter
 import com.example.medsafecycle.limbah.LimbahDummy
+import com.example.medsafecycle.limbah.LimbahNotFoundActivity
 
 class HospitalHomeFragment : Fragment() {
 
@@ -49,6 +50,16 @@ class HospitalHomeFragment : Fragment() {
             }
 
         }
+
+        // TODO : Ganti aja ye
+        binding.cameraButton.setOnClickListener {
+            redirectResultNotFound()
+        }
+    }
+
+    private fun redirectResultNotFound() {
+        val i = Intent(requireContext(), LimbahNotFoundActivity::class.java)
+        startActivity(i)
     }
 
     override fun onDestroy() {
