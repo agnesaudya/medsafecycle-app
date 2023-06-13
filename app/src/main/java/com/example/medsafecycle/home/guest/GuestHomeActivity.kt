@@ -28,6 +28,7 @@ import com.example.medsafecycle.landing.LandingActivity
 import com.example.medsafecycle.limbah.HistoryLimbahActivity
 import com.example.medsafecycle.limbah.HistoryLimbahAdapter
 import com.example.medsafecycle.limbah.LimbahDummy
+import com.example.medsafecycle.uriToFile
 import java.io.File
 
 //  TODO : Buat guest, pake shared preference aja ya :) soalnya dia gapunya akun, tapi perlu history
@@ -181,9 +182,9 @@ class GuestHomeActivity : AppCompatActivity() {
         if (result.resultCode == RESULT_OK) {
             val selectedImg = result.data?.data as Uri
             selectedImg.let { uri ->
-                val myFile = uriToFile(uri, this@AddStoryActivity)
-                getFile = myFile
-                binding.previewImageView.setImageURI(uri)
+//                val myFile = uriToFile(uri, this@AddStoryActivity)
+//                getFile = myFile
+//                binding.previewImageView.setImageURI(uri)
             }
         }
     }
