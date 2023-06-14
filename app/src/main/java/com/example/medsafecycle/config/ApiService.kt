@@ -1,6 +1,6 @@
 package com.example.medsafecycle.config
 
-import com.example.medsafecycle.AuthResponse
+import com.example.medsafecycle.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -24,18 +24,29 @@ interface ApiService {
         @Field("password") password: String
     ): Call<AuthResponse>
 
+
+    //
+//
+    @Multipart
+    @POST("upload")
+    fun scanImage(
+        @Part file: MultipartBody.Part,
+    ): Call<UploadResponse>
+
+
+    //
+    @GET("history/{size}/{offset}")
+    suspend fun getAllHistory(
+        @Header("x-access-token") token: String,
+        @Path("size") size: Number,
+        @Path("offset") offset: Number
+    ): HistoryResponse
+
+    @GET("wastes/{waste_id}")
+    fun getLimbah(@Path("waste_id") id: String): Call<LimbahResponse>
+
+    @GET("myprofile}")
+    fun getProfile(): Call<ProfileResponse>
+
+
 }
-//
-//
-//    @Multipart
-//    @POST("stories")
-//    fun uploadImage(
-//        @Part file: MultipartBody.Part,
-//        @Part("description") description: RequestBody,
-//    ): Call<AddStoryResponse>
-//
-//
-//    @GET("companies")
-//    suspend fun getAllCompanies(
-//        @Header("x-access-token") token: String,
-//    ): StoriesResponse

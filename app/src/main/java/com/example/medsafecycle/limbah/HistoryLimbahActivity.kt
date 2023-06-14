@@ -55,9 +55,9 @@ class HistoryLimbahActivity : AppCompatActivity() {
 
     // TODO : Jangan lupa sesuain ini sama output API, terutama bagian pas nambahin list
     private fun showRecyclerList() {
-        rvLimbah.layoutManager = LinearLayoutManager(this)
-        val listAdapter = HistoryLimbahAdapter(list)
-        rvLimbah.adapter = listAdapter
+//        rvLimbah.layoutManager = LinearLayoutManager(this)
+//        val listAdapter = HistoryLimbahAdapter(list)
+//        rvLimbah.adapter = listAdapter
     }
 
     // TODO : Ini buat bikin dummy. Nanti hapus ini dan di values.strings.xml

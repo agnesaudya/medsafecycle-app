@@ -193,7 +193,7 @@
             <ImageView
                 android:id="@+id/bg_img"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 app:srcCompat="@drawable/menu_image_decor_hospital" />
 
         </androidx.cardview.widget.CardView>
