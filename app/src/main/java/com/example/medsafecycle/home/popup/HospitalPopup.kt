@@ -4,8 +4,6 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -17,26 +15,22 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.RecyclerView
-import com.example.medsafecycle.*
-import com.example.medsafecycle.UserPreference
-import com.example.medsafecycle.home.guest.GuestHomeActivity
-import com.example.medsafecycle.home.hospital.HospitalHomeActivityBase
+import com.example.medsafecycle.AuthResponse
+import com.example.medsafecycle.R
+import com.example.medsafecycle.createCustomTempFile
 import com.example.medsafecycle.limbah.LimbahNotFoundActivity
-import com.example.medsafecycle.viewmodel.LoginViewModel
+import com.example.medsafecycle.uriToFile
 import com.example.medsafecycle.viewmodel.PopupViewModel
 import java.io.File
 
-class UploadPopup : DialogFragment() {
+class HospitalPopup : DialogFragment() {
     private var getFile: File? = null
-    private var imagePath: String? = null
     private lateinit var bgImage: ImageView
     private lateinit var progressBar: ProgressBar
     private val popupViewModel by viewModels<PopupViewModel>()

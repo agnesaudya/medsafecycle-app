@@ -4,37 +4,36 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.medsafecycle.ProfileResponse
+import com.example.medsafecycle.LimbahResponse
 import com.example.medsafecycle.config.ApiConfig
-import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ProfileViewModel: ViewModel(){
+class DetailViewModel: ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
-    private val _profileResponse = MutableLiveData<ProfileResponse>()
-    val profileResponse: LiveData<ProfileResponse> = _profileResponse
+    private val _limbahResponse = MutableLiveData<LimbahResponse>()
+    val limbahResponse: LiveData<LimbahResponse> = _limbahResponse
 
     companion object{
-        private const val TAG = "ProfileViewModel"
+        private const val TAG = "DetailViewModel"
     }
-    fun getUserinfo(token: String) {
-        val client = ApiConfig.getApiServiceWithToken(token).getProfile()
+    fun getLimbah(limbah_id: String, token:String) {
+        val client = ApiConfig.getApiServiceWithToken(token).getLimbah(limbah_id)
         _isLoading.value = true
 
 
-        client.enqueue(object : Callback<ProfileResponse> {
+        client.enqueue(object : Callback<LimbahResponse> {
             override fun onResponse(
-                call: Call<ProfileResponse>,
-                response: Response<ProfileResponse>
+                call: Call<LimbahResponse>,
+                response: Response<LimbahResponse>
             ) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
-                        _profileResponse.value = responseBody!!
+                        _limbahResponse.value = responseBody!!
 
                     }
                 } else {
@@ -42,11 +41,11 @@ class ProfileViewModel: ViewModel(){
                     Log.e(TAG, "onFailure: ${response.errorBody()}")
 //                    val gson = Gson()
 //                    gson.fromJson(response.errorBody()?.string(), ProfileResponse::class.java)
-                    _profileResponse.value = ProfileResponse(username = null, userAddress = null, userEmail = null)
+                    _limbahResponse.value = LimbahResponse(wasteInformation = null, wasteType = null, wasteTypeId = null, imageLink = null)
 
                 }
             }
-            override fun onFailure(call: Call<ProfileResponse>, t: Throwable) {
+            override fun onFailure(call: Call<LimbahResponse>, t: Throwable) {
                 _isLoading.value = false
                 Log.e(TAG, "onFailure: ${t.message}")
             }
