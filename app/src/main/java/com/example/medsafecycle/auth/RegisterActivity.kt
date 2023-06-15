@@ -23,8 +23,6 @@ class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.typeSpinner.onItemSelectedListener
-
         registerViewModel.isLoading.observe(this) {
             showLoading(it)
         }
@@ -38,15 +36,17 @@ class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
             val pwd = binding.myPwdText.text.toString()
             val name = binding.myNameText.text.toString()
             val address = binding.myAddressText.text.toString()
-            val type = binding.typeSpinner.selectedItem.toString()
-            if(type == "Hospital"){
-                registerViewModel.register(email,name,pwd,address,0)
-            }else{
-                registerViewModel.register(email,name,pwd,address,1)
-            }
+
+            // Type 0 = Hospital, current registration only support hospital user
+            registerViewModel.register(email,name,pwd,address,0)
+
 
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(binding.root.windowToken, 0)
+
+            val moveIntent = Intent(this, LoginActivity::class.java)
+            startActivity(moveIntent)
+            finish()
 
         }
 
@@ -57,17 +57,6 @@ class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
         }
 
 
-// Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter.createFromResource(
-            this,
-            R.array.type_user,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
-            binding.typeSpinner.adapter = adapter
-        }
     }
 
     private fun showLoading(isLoading: Boolean) {

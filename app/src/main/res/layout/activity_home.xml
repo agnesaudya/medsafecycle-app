@@ -76,6 +76,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="16dp"
                     android:gravity="top"
+                    android:visibility="invisible"
                     android:text="@string/selengkapnya"
                     android:textColor="@color/light_green"
                     android:textSize="14sp"
@@ -242,6 +243,17 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/not_found"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/belum_ada_riwayat_scan"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="@+id/riwayat_scan"
+                    app:layout_constraintTop_toBottomOf="@+id/riwayat_scan" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
