@@ -1,3 +1,50 @@
 <resources>
     <string name="app_name">MedSafeCycle</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="medsafe">MedSafe</string>
+    <string name="cycle">Cycle!</string>
+    <string name="selamat_dat">Selamat datang di</string>
+    <string name="solusi_terp">Solusi terpercaya untuk pengelolaan\nlimbah medis secara efisien</string>
+    <string name="medsafe_title">MedSafe Cycle</string>
+    <string name="welcome_msg">Mudah digunakan. Anda cukup memfoto\nsampah medis yang ingin anda cari tahu\ninformasinya.\n\nAnda dengan mudahnya bisa mendapatkan\ninformasi klasifikasi dan cara pembuangan\ndari sampah medis tersebut.
+    </string>
+    <string name="selanjutnya">selanjutnya</string>
+    <string name="pilih_peran">Pilih Peran Anda</string>
+    <string name="pilih_peran_subtitle">Pilihlah peran sesuai tujuan anda</string>
+    <string name="masuk_sebagai">Masuk sebagai</string>
+    <string name="pengguna_biasa">Pengguna\nBiasa</string>
+    <string name="instansi_rumah_sakit">Instansi/ \nRumah Sakit</string>
+    <string name="masuk">masuk</string>
+    <string name="riwayat_scan">Riwayat Scan</string>
+    <string name="rumah_sakit_terdekat">Rumah Sakit Terdekat</string>
+    <string name="cek_rumah_sakit_terdekat">Cek Rumah Sakit Terdekat!</string>
+    <string name="apakah_anda_perlu_membuang_nlimbahnya_di_rumah_sakit">Apakah anda perlu membuang\nlimbahnya di rumah sakit?</string>
+    <string name="hospital_logo">hospital logo</string>
+    <string name="selengkapnya">...Selengkapnya</string>
+    <string name="jenis_limbah">Jenis Limbah</string>
+    <string name="dummy_jenis">Limbah Benda Tajam</string>
+    <string name="cara_pembuangan">Cara Pembuangan</string>
+    <string name="dummy_cara_pembuangan">Pembuangan limbah benda tajam harus dilakukan dengan hati-hati. Tempatkan benda tajam dalam wadah yang kuat dan tahan tusukan, seperti kotak limbah khusus. Jangan mencampur dengan sampah lainnya. Tandai wadah dan hindari memodifikasinya. Bawa wadah ke tempat pembuangan limbah medis yang aman atau konsultasikan dengan pihak berwenang setempat.</string>
+    <string name="tentang_limbah">Tentang Limbah</string>
+    <string name="dummy_deskripsi">Limbah benda tajam adalah jenis limbah yang memiliki ujung atau tepi yang tajam atau menusuk. Ini termasuk dalam kategori limbah medis atau kesehatan yang dihasilkan dari aktivitas seperti perawatan kesehatan, pengobatan, atau prosedur medis. Contoh umum limbah benda tajam meliputi jarum suntik, pisau bedah, pecahan kaca, atau alat-alat medis lainnya yang dapat menyebabkan luka atau cedera jika tidak ditangani dengan hati-hati. Penting untuk membuang limbah benda tajam dengan aman untuk mencegah penularan penyakit atau cedera pada orang lain dan pekerja pengelola sampah.</string>
+    <string name="selesai">selesai</string>
+
+
+    <!-- TODO: Ini Dummy, Nanti Hapus -->
+    <string-array name="data_jenis">
+        <item>Limbah infeksius</item>
+        <item>Limbah benda tajam</item>
+        <item>Limbah patologis</item>
+        <item>Limbah kimia</item>
+        <item>Limbah benda tajam</item>
+    </string-array>
+    <string-array name="data_tanggal">
+        <item>01/01/2001</item>
+        <item>02/02/2002</item>
+        <item>03/03/2003</item>
+        <item>04/04/2004</item>
+        <item>05/05/2005</item>
+    </string-array>
+    <!-- Batas Hapus -->
 </resources>

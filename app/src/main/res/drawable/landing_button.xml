@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/dark_teal" /> <!-- Replace with your desired background color -->
+    <corners android:radius="20dp" /> <!-- Adjust the radius value to change the corner rounding -->
+</shape>
