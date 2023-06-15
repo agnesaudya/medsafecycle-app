@@ -2,6 +2,31 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-feature android:name="android.hardware.camera" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+
+            <category android:name="android.intent.category.BROWSABLE" />
+
+            <data android:scheme="https" />
+        </intent>
+    </queries>
+    <queries>
+        <package android:name="com.google.android.apps.maps" />
+    </queries>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,12 +37,29 @@
         android:theme="@style/Theme.MedSafeCycle"
         tools:targetApi="31">
         <activity
-            android:name=".limbah.HistoryLimbahActivity"
-            android:theme="@style/AppTheme"
+            android:name=".limbah.GuestLimbahHistoryActivity"
             android:exported="false" />
         <activity
-            android:name=".limbah.DetailLimbahActivity"
-            android:theme="@style/AppTheme"
+            android:name=".detail.guest.GuestDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".limbah.LimbahNotFoundActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.hospital.HospitalHomeActivityBase"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".auth.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".auth.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".limbah.HistoryLimbahActivity"
+            android:exported="false" />
+        <activity
+            android:name=".detail.hospital.DetailLimbahActivity"
             android:exported="false" />
         <activity
             android:name=".home.guest.GuestHomeActivity"
@@ -34,6 +76,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.medsafecycle"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

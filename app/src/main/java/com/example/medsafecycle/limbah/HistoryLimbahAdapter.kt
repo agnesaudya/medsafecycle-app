@@ -1,47 +1,75 @@
 package com.example.medsafecycle.limbah
 
-import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.medsafecycle.R
+import com.bumptech.glide.Glide
+import com.example.medsafecycle.HistoryResponseItem
+import com.example.medsafecycle.databinding.ResizedHistoryItemBinding
+import com.example.medsafecycle.limbah.HistoryLimbahAdapter.ViewHolder.Companion.DIFF_CALLBACK
 
-// TODO : Modifikasi sesuai API yaa
 
-class HistoryLimbahAdapter(private val listLimbah: ArrayList<LimbahDummy>) : RecyclerView.Adapter<HistoryLimbahAdapter.ListViewHolder>() {
 
-    class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class HistoryLimbahAdapter: PagingDataAdapter<HistoryResponseItem, HistoryLimbahAdapter.ViewHolder>(DIFF_CALLBACK) {
+    private lateinit var onItemClickCallback: OnItemClickCallback
 
-        val tvJenis: TextView = itemView.findViewById(R.id.jenis_limbah)
-        val tvTanggal: TextView = itemView.findViewById(R.id.tanggal_upload)
-        val tvImage: ImageView = itemView.findViewById(R.id.foto_limbah)
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.history_item, parent, false)
-        return ListViewHolder(view)
+    interface OnItemClickCallback {
+        fun onItemClicked(limbah: HistoryResponseItem)
     }
 
-    override fun getItemCount(): Int = listLimbah.size
 
-    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val (jenis,tanggal) = listLimbah[position]
-        holder.tvTanggal.text = tanggal
-        holder.tvJenis.text = jenis
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val binding = ResizedHistoryItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
+    }
 
-        // TODO : Di sini blom ditambahin buat imageViewnya
-        // holder.tvImage
 
-        holder.itemView.setOnClickListener {
 
-            // TODO : Kalo mau get lagi dari API, ganti lagi aja yaa cara kerjanya
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-            val intentDetail = Intent(holder.itemView.context, DetailLimbahActivity::class.java)
-            holder.itemView.context.startActivity(intentDetail)
+        val data = getItem(position)
+        holder.itemView.setOnClickListener{
+            if (data != null) {
+                onItemClickCallback.onItemClicked(data)
+            }
+        }
+        if (data != null) {
+            holder.bind(data)
         }
     }
+
+    class ViewHolder(private val binding: ResizedHistoryItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(data: HistoryResponseItem) {
+
+            binding.tanggalUpload.text = data.createdAt
+            binding.jenisLimbah.text = data.wasteType
+
+            Glide.with(itemView.context)
+                .load(data.imageLink)
+                .into(binding.fotoLimbah)
+
+
+    }
+
+    companion object {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<HistoryResponseItem>() {
+            override fun areItemsTheSame(oldItem: HistoryResponseItem, newItem: HistoryResponseItem): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(oldItem: HistoryResponseItem, newItem: HistoryResponseItem): Boolean {
+                return oldItem.wasteId == newItem.wasteId
+            }
+        }
+    }
+}
+
 
 }

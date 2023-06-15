@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import com.example.medsafecycle.R
+import com.example.medsafecycle.auth.LoginActivity
 import com.example.medsafecycle.home.guest.GuestHomeActivity
 
 // TODO: Rename parameter arguments, choose names that match
@@ -58,9 +59,10 @@ class ThirdLandingFragment : Fragment() {
             activity?.finish()
         }
 
-        // TODO : Redirect to Login
         rsButton.setOnClickListener {
-            Toast.makeText(context,"Feature Coming Soon!", Toast.LENGTH_SHORT).show()
+            val i = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(i)
+            activity?.finish()
         }
 
     }

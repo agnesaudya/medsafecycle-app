@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.viewpager2.widget.ViewPager2
 import com.example.medsafecycle.R
-import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
 
 class LandingActivity : AppCompatActivity() {

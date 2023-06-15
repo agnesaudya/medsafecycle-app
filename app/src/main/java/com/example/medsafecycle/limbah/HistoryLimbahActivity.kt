@@ -1,38 +1,67 @@
 package com.example.medsafecycle.limbah
 
-import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.medsafecycle.HistoryResponseItem
 import com.example.medsafecycle.R
+import com.example.medsafecycle.detail.hospital.DetailLimbahActivity
+import com.example.medsafecycle.viewmodel.AuthViewModelFactory
+import com.example.medsafecycle.viewmodel.HistoryViewModel
 
 class HistoryLimbahActivity : AppCompatActivity() {
 
     private lateinit var rvLimbah: RecyclerView
-
+    private val historyViewModel: HistoryViewModel by viewModels {
+        AuthViewModelFactory(this)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history_limbah)
-
         supportActionBar?.hide()
 
-        setUpRv()
+        rvLimbah = findViewById(R.id.rec_view_history)
+        val layoutManager = LinearLayoutManager(this)
+        rvLimbah.layoutManager = layoutManager
+        val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
+        rvLimbah.addItemDecoration(itemDecoration)
+
+
+        getData()
         manageToolbar()
     }
 
-    private fun setUpRv(){
-        rvLimbah = findViewById(R.id.rec_view_history)
-        rvLimbah.setHasFixedSize(true)
+    private fun getData() {
+        val adapter = HistoryLimbahAdapter()
+        adapter.setOnItemClickCallback(object : HistoryLimbahAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: HistoryResponseItem) {
+                val intentDetail = Intent(this@HistoryLimbahActivity, DetailLimbahActivity::class.java)
+                intentDetail.putExtra("waste_id",data.wasteId)
+                startActivity(intentDetail)
+            }
+        })
 
-        list.addAll(getListDummy())
-        showRecyclerList()
+        rvLimbah.adapter = adapter.withLoadStateFooter(
+            footer = LoadingStateAdapter {
+                adapter.retry()
+            }
+        )
+
+        historyViewModel.history.observe(this) {
+            adapter.submitData(lifecycle, it)
+
+
+        }
     }
+
 
     private fun manageToolbar(){
         val toolbar : Toolbar = findViewById(R.id.toolbar)
@@ -53,28 +82,5 @@ class HistoryLimbahActivity : AppCompatActivity() {
         toolbar.addView(customToolbar)
     }
 
-    // TODO : Jangan lupa sesuain ini sama output API, terutama bagian pas nambahin list
-    private fun showRecyclerList() {
-        rvLimbah.layoutManager = LinearLayoutManager(this)
-        val listAdapter = HistoryLimbahAdapter(list)
-        rvLimbah.adapter = listAdapter
-    }
 
-    // TODO : Ini buat bikin dummy. Nanti hapus ini dan di values.strings.xml
-
-    private val list = ArrayList<LimbahDummy>()
-    private fun getListDummy(): ArrayList<LimbahDummy> {
-
-        val dataJenis = resources.getStringArray(R.array.data_jenis)
-        val dataTanggal = resources.getStringArray(R.array.data_tanggal)
-
-        val listDummy = ArrayList<LimbahDummy>()
-        for (i in dataJenis.indices) {
-            val dummy = LimbahDummy(dataJenis[i],dataTanggal[i])
-            listDummy.add(dummy)
-        }
-
-        return listDummy
-
-    }
 }

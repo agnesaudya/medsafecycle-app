@@ -29,8 +29,17 @@
     <string name="tentang_limbah">Tentang Limbah</string>
     <string name="dummy_deskripsi">Limbah benda tajam adalah jenis limbah yang memiliki ujung atau tepi yang tajam atau menusuk. Ini termasuk dalam kategori limbah medis atau kesehatan yang dihasilkan dari aktivitas seperti perawatan kesehatan, pengobatan, atau prosedur medis. Contoh umum limbah benda tajam meliputi jarum suntik, pisau bedah, pecahan kaca, atau alat-alat medis lainnya yang dapat menyebabkan luka atau cedera jika tidak ditangani dengan hati-hati. Penting untuk membuang limbah benda tajam dengan aman untuk mencegah penularan penyakit atau cedera pada orang lain dan pekerja pengelola sampah.</string>
     <string name="selesai">selesai</string>
+    <string name="daftarkan_instansi_anda">Daftarkan Instansi Anda!</string>
+    <string name="cek_di_sini">cek di sini!</string>
+    <string name="apakah_anda_ingin_mendaftarkan_ninstansi_rumah_sakit_anda">Apakah anda ingin mendaftarkan\ninstansi / rumah sakit anda?</string>
+    <string name="cek_perusahaan_limbah_terdekat">Cek Perusahaan Limbah Terdekat!</string>
+    <string name="mencari_perusahaan_pengolah_limbah">Mencari perusahaan pengolah limbah?</string>
+    <string name="cek_di_sini_">cek di sini!</string>
 
-
+    <string-array name="type_user">
+        <item>Hospital</item>
+        <!--        <item>Perusahaan</item>-->
+    </string-array>
     <!-- TODO: Ini Dummy, Nanti Hapus -->
     <string-array name="data_jenis">
         <item>Limbah infeksius</item>
@@ -46,5 +55,41 @@
         <item>04/04/2004</item>
         <item>05/05/2005</item>
     </string-array>
+    <string name="title_activity_hospital_home_base">HospitalHomeActivityBase</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="perusahaan_limbah_terdekat">Perusahaan Limbah Terdekat</string>
+    <string name="nama">nama</string>
+    <string name="rumah_sakit_placeholder">Rumah Sakit Placeholder</string>
+    <string name="alamat">Alamat</string>
+    <string name="laudantium_totam_rem_aperiam_eaque_ipsa_quae_ab_illo_inventore">laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore</string>
+    <string name="email">Email</string>
+    <string name="hospital_dummy_gmail_com">hospital.dummy@gmail.com</string>
+    <string name="logout">logout</string>
+    <string name="profile">Profile</string>
+    <string name="mohon_maaf">Mohon maaf,</string>
+    <string name="kami_tidak_bisa_mengkategorikan_limbahmu">Kami tidak bisa mengkategorikan limbahmu.</string>
+    <string name="kemungkinan_limbahmu_ntermasuk_dalam_limbah_yang_nbelum_bisa_dikategorikan_naplikasi_medsafecycle">Kemungkinan, limbahmu termasuk dalam limbah yang\nbelum bisa dikategorikan aplikasi MedSafeCycle.</string>
+    <string name="atau_anda_bisa_mencoba_lagi_dengan_foto_yang_berbeda">Atau, Anda bisa mencoba lagi dengan foto yang berbeda</string>
+    <string name="kembali">kembali</string>
+    <string name="login">Login</string>
+    <string name="login_title">LOGIN</string>
+    <string name="belum_punya_akun">Belum Punya Akun?</string>
+    <string name="daftar_di_sini">Daftar Di Sini</string>
+    <string name="password">Password</string>
+    <string name="email_title">Email</string>
+    <string name="selamat_datang_pengguna_baru">Selamat Datang, Pengguna Baru</string>
+    <string name="cycle2">Cycle</string>
+    <string name="masukkan_nama_instansi_anda">Masukkan Nama Instansi Anda</string>
+    <string name="masukkan_alamat_anda">Masukkan Alamat Anda</string>
+    <string name="register">REGISTER</string>
+    <string name="sudah_punya_akun">Sudah punya akun?</string>
+    <string name="masuk_di_sini">Masuk di sini</string>
+    <string name="enter_the_name_of_your_institute">Enter Institute Name</string>
+    <string name="enter_your_address">Enter your Address</string>
+    <string name="nama_instansi">Nama Instansi</string>
+
+
     <!-- Batas Hapus -->
 </resources>
