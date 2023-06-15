@@ -46,7 +46,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:gravity="top"
-            android:text="@string/nama"
+            android:text="@string/nama_instansi"
             android:textColor="@color/dark_teal"
             android:textSize="16sp"
             android:textStyle="bold"
