@@ -38,37 +38,48 @@
         tools:targetApi="31">
         <activity
             android:name=".limbah.GuestLimbahHistoryActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".detail.guest.GuestDetailActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".limbah.LimbahNotFoundActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".home.hospital.HospitalHomeActivityBase"
+            android:screenOrientation="portrait"
             android:exported="false">
         </activity>
         <activity
             android:name=".auth.LoginActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".auth.RegisterActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".limbah.HistoryLimbahActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".detail.hospital.DetailLimbahActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".home.guest.GuestHomeActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".landing.LandingActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
