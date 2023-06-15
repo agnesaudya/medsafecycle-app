@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.ViewModelProvider
@@ -24,8 +25,8 @@ class GuestHomeActivity : AppCompatActivity() {
     private lateinit var textRedirect: CardView
     private lateinit var registerRedirect: CardView
     private lateinit var adapter: GuestHomeHistoryAdapter
-
-
+    private lateinit var notFound: TextView
+    private lateinit var toHistory: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,12 +40,24 @@ class GuestHomeActivity : AppCompatActivity() {
 
         textRedirect = findViewById(R.id.redirect_nearest_hospital)
         cameraButton = findViewById(R.id.camera_button)
+        notFound = findViewById(R.id.not_found)
+        toHistory = findViewById(R.id.to_history_button)
 
         guestHomeViewModel.getAllLimbah().observe(this){
                 limbahList ->
             if (limbahList  != null) {
                 adapter.setListLimbah(limbahList)
                 adapter.notifyDataSetChanged()
+
+                if(limbahList.isEmpty()){
+                    notFound.visibility = View.VISIBLE
+                    toHistory.visibility = View.INVISIBLE
+
+                } else{
+                    notFound.visibility = View.GONE
+                    toHistory.visibility = View.VISIBLE
+                }
+
             }
         }
 
