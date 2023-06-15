@@ -1,4 +1,4 @@
-package com.example.medsafecycle.viewmodel
+package com.example.medsafecycle.viewmodel.guest
 
 import android.app.Application
 import android.util.Log
@@ -11,7 +11,6 @@ import com.example.medsafecycle.database.GuestLimbah
 import com.example.medsafecycle.database.GuestLimbahRepository
 import com.google.gson.Gson
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

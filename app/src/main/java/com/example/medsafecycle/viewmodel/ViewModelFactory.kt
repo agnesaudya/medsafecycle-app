@@ -4,6 +4,10 @@ import android.app.Application
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.medsafecycle.viewmodel.guest.GuestDetailViewModel
+import com.example.medsafecycle.viewmodel.guest.GuestHomeViewModel
+import com.example.medsafecycle.viewmodel.guest.GuestLimbahHistoryViewModel
+import com.example.medsafecycle.viewmodel.guest.PopupViewModel
 
 class AuthViewModelFactory(private val context: Context) : ViewModelProvider.Factory {
 
@@ -43,6 +47,8 @@ class GuestViewModelFactory(private val mApplication: Application) : ViewModelPr
             return GuestHomeViewModel(mApplication) as T
         }else if(modelClass.isAssignableFrom(PopupViewModel::class.java)) {
             return PopupViewModel(mApplication) as T
+        }else if(modelClass.isAssignableFrom(GuestLimbahHistoryViewModel::class.java)) {
+            return GuestLimbahHistoryViewModel(mApplication) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
     }

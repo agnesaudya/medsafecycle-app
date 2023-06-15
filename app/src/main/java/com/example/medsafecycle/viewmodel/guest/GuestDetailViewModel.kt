@@ -1,4 +1,4 @@
-package com.example.medsafecycle.viewmodel
+package com.example.medsafecycle.viewmodel.guest
 
 import android.app.Application
 import androidx.lifecycle.LiveData

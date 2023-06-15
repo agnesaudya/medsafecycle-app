@@ -1,4 +1,4 @@
-package com.example.medsafecycle.viewmodel
+package com.example.medsafecycle.viewmodel.auth
 
 import android.util.Log
 import androidx.lifecycle.LiveData

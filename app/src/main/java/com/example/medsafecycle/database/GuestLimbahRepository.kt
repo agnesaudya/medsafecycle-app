@@ -21,5 +21,7 @@ class GuestLimbahRepository(application: Application) {
         executorService.execute { guestLimbahDao.delete(guestLimbah) }
     }
 
+    fun getNewestLimbah(total: Int): LiveData<List<GuestLimbah>> =guestLimbahDao.getNewestLimbah(total)
+
     fun getLimbahById(id: Long): LiveData<GuestLimbah> = guestLimbahDao.getLimbahById(id)
 }

@@ -4,19 +4,16 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.medsafecycle.AuthResponse
 import com.example.medsafecycle.R
-import com.example.medsafecycle.databinding.ActivityLoginBinding
 import com.example.medsafecycle.databinding.ActivityRegisterBinding
-import com.example.medsafecycle.viewmodel.RegisterViewModel
+import com.example.medsafecycle.viewmodel.auth.RegisterViewModel
 
 class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private lateinit var binding: ActivityRegisterBinding

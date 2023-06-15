@@ -11,7 +11,7 @@ import androidx.cardview.widget.CardView
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.medsafecycle.R
-import com.example.medsafecycle.viewmodel.GuestDetailViewModel
+import com.example.medsafecycle.viewmodel.guest.GuestDetailViewModel
 import com.example.medsafecycle.viewmodel.GuestViewModelFactory
 import java.io.File
 
