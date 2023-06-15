@@ -1,11 +1,9 @@
 package com.example.medsafecycle.limbah
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.activity.viewModels
@@ -15,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medsafecycle.HistoryResponseItem
 import com.example.medsafecycle.R
-import com.example.medsafecycle.UserPreference
+import com.example.medsafecycle.detail.hospital.DetailLimbahActivity
 import com.example.medsafecycle.viewmodel.AuthViewModelFactory
 import com.example.medsafecycle.viewmodel.HistoryViewModel
 

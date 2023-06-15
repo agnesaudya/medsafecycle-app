@@ -15,4 +15,6 @@ interface GuestLimbahDao {
     fun getAllLimbah(): LiveData<List<GuestLimbah>>
     @Query("SELECT * FROM GuestLimbah WHERE id = :id")
     fun getLimbahById(id: Long): LiveData<GuestLimbah>
+    @Query("SELECT * FROM GuestLimbah ORDER BY id DESC LIMIT :total")
+    fun getNewestLimbah(total:Int): LiveData<List<GuestLimbah>>
 }

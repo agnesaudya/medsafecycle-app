@@ -9,9 +9,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.medsafecycle.HistoryResponseItem
 import com.example.medsafecycle.R
 import com.example.medsafecycle.database.GuestLimbah
+import com.example.medsafecycle.detail.guest.GuestDetailActivity
 import com.example.medsafecycle.helper.GuestLimbahDiffCallback
 
 
@@ -32,7 +32,7 @@ class GuestHistoryLimbahAdapter : RecyclerView.Adapter<GuestHistoryLimbahAdapter
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.history_item, parent, false)
+        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.resized_history_item, parent, false)
         return ListViewHolder(view)
     }
 

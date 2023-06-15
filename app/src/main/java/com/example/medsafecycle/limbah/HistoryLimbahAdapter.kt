@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.medsafecycle.HistoryResponseItem
-import com.example.medsafecycle.databinding.HistoryItemBinding
+import com.example.medsafecycle.databinding.ResizedHistoryItemBinding
 import com.example.medsafecycle.limbah.HistoryLimbahAdapter.ViewHolder.Companion.DIFF_CALLBACK
 
 
@@ -25,7 +25,7 @@ class HistoryLimbahAdapter: PagingDataAdapter<HistoryResponseItem, HistoryLimbah
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = HistoryItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ResizedHistoryItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -44,7 +44,7 @@ class HistoryLimbahAdapter: PagingDataAdapter<HistoryResponseItem, HistoryLimbah
         }
     }
 
-    class ViewHolder(private val binding: HistoryItemBinding) :
+    class ViewHolder(private val binding: ResizedHistoryItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: HistoryResponseItem) {
 

@@ -1,10 +1,7 @@
-package com.example.medsafecycle.limbah
+package com.example.medsafecycle.detail.hospital
 
-import android.content.Intent
-import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageButton
@@ -17,13 +14,10 @@ import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
 import com.bumptech.glide.Glide
 import com.example.medsafecycle.LimbahResponse
-import com.example.medsafecycle.ProfileResponse
 
 import com.example.medsafecycle.R
 import com.example.medsafecycle.UserPreference
-import com.example.medsafecycle.landing.LandingActivity
 import com.example.medsafecycle.viewmodel.DetailViewModel
-import com.example.medsafecycle.viewmodel.GuestDetailViewModel
 
 class DetailLimbahActivity : AppCompatActivity() {
 

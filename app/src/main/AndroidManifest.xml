@@ -37,10 +37,10 @@
         android:theme="@style/Theme.MedSafeCycle"
         tools:targetApi="31">
         <activity
-            android:name=".GuestLimbahHistory"
+            android:name=".limbah.GuestLimbahHistory"
             android:exported="false" />
         <activity
-            android:name=".limbah.GuestDetailActivity"
+            android:name=".detail.guest.GuestDetailActivity"
             android:exported="false" />
         <activity
             android:name=".limbah.LimbahNotFoundActivity"
@@ -55,9 +55,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".perusahaan.ListCompaniesActivity"
-            android:exported="false" />
-        <activity
             android:name=".auth.LoginActivity"
             android:exported="false" />
         <activity
@@ -67,7 +64,7 @@
             android:name=".limbah.HistoryLimbahActivity"
             android:exported="false" />
         <activity
-            android:name=".limbah.DetailLimbahActivity"
+            android:name=".detail.hospital.DetailLimbahActivity"
             android:exported="false" />
         <activity
             android:name=".home.guest.GuestHomeActivity"

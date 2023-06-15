@@ -1,6 +1,5 @@
 package com.example.medsafecycle.limbah
 
-import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.medsafecycle.HistoryResponseItem
 import com.example.medsafecycle.R
+import com.example.medsafecycle.detail.hospital.DetailLimbahActivity
 
 class HospitalHistoryAdapter(private val listLimbah: List<HistoryResponseItem>) : RecyclerView.Adapter<HospitalHistoryAdapter.ListViewHolder>() {
 
