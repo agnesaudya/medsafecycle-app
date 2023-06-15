@@ -1,5 +1,6 @@
 package com.example.medsafecycle.data
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.medsafecycle.HistoryResponseItem
@@ -8,7 +9,7 @@ import com.example.medsafecycle.config.ApiService
 class HistoryPagingSource (private val apiService: ApiService,private val token: String) : PagingSource<Int, HistoryResponseItem>() {
     private companion object {
         const val INITIAL_PAGE_INDEX = 0
-        const val NETWORK_PAGE_SIZE = 1
+        const val NETWORK_PAGE_SIZE = 5
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, HistoryResponseItem> {
@@ -17,6 +18,7 @@ class HistoryPagingSource (private val apiService: ApiService,private val token:
         return try {
 
             val responseData = apiService.getAllHistory(token,  params.loadSize, offset)
+            Log.d("fetch",responseData.toString())
             val nextKey = if (responseData.isEmpty()) {
                 null
             }else{
@@ -34,10 +36,7 @@ class HistoryPagingSource (private val apiService: ApiService,private val token:
 
     override fun getRefreshKey(state: PagingState<Int, HistoryResponseItem>): Int? {
         return null
-//        return state.anchorPosition?.let { anchorPosition ->
-//            val anchorPage = state.closestPageToPosition(anchorPosition)
-//            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
-//        }
+
     }
 
 }

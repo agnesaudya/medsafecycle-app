@@ -1,5 +1,6 @@
 package com.example.medsafecycle.detail.hospital
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,9 +10,12 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import android.window.OnBackInvokedDispatcher
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
+import androidx.core.provider.FontsContractCompat.Columns.RESULT_CODE
 import com.bumptech.glide.Glide
 import com.example.medsafecycle.LimbahResponse
 
@@ -44,9 +48,7 @@ class DetailLimbahActivity : AppCompatActivity() {
         image = findViewById(R.id.limbah_photo_detail)
         progressBar = findViewById(R.id.progressBar)
         deskripsi_limbah = findViewById(R.id.deskripsi_limbah)
-        done.setOnClickListener {
-            finish()
-        }
+
 
 
         val waste_id = intent.getLongExtra("waste_id",0)
@@ -55,6 +57,11 @@ class DetailLimbahActivity : AppCompatActivity() {
 
         detailViewModel.deleteRes.observe(this) {
             Toast.makeText(this, "${it}", Toast.LENGTH_SHORT).show()
+            if(it=="data berhasil dihapus"){
+                val resultIntent = Intent()
+                setResult(1, resultIntent)
+                finish()
+            }
         }
         detailViewModel.isLoading.observe(this) {
             showLoading(it)
@@ -66,9 +73,6 @@ class DetailLimbahActivity : AppCompatActivity() {
 
         delete.setOnClickListener{
             detailViewModel.delete(waste_id, mUserPreference.getToken().toString())
-//            val intentDetail = Intent(this, HistoryLimbahActivity::class.java)
-//            startActivity(intentDetail)
-            finish()
         }
 
 
@@ -96,6 +100,8 @@ class DetailLimbahActivity : AppCompatActivity() {
 
 
     }
+
+
 
     private fun manageToolbar(){
         val toolbar : Toolbar = findViewById(R.id.toolbar)

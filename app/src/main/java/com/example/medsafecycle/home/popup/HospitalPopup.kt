@@ -2,6 +2,7 @@ package com.example.medsafecycle.home.popup
 
 import android.Manifest
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
@@ -27,20 +28,32 @@ import com.example.medsafecycle.*
 import com.example.medsafecycle.UserPreference
 import com.example.medsafecycle.limbah.LimbahNotFoundActivity
 import com.example.medsafecycle.viewmodel.HospitalPopupViewModel
+import com.example.medsafecycle.viewmodel.guest.PopupViewModel
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 
-class HospitalPopup : DialogFragment() {
+class HospitalPopup : DialogFragment(), DialogInterface.OnDismissListener{
+    private var onDismissListener: DialogInterface.OnDismissListener? = null
     private var getFile: File? = null
     private lateinit var bgImage: ImageView
     private lateinit var progressBar: ProgressBar
+
     private lateinit var mUserPreference: UserPreference
     private val hospitalPopupViewModel: HospitalPopupViewModel by viewModels()
     companion object {
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
         private const val REQUEST_CODE_PERMISSIONS = 10
+    }
+
+    fun setOnDismissListener(listener: DialogInterface.OnDismissListener) {
+        onDismissListener = listener
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        onDismissListener?.onDismiss(dialog)
     }
 
     override fun onRequestPermissionsResult(
@@ -61,9 +74,11 @@ class HospitalPopup : DialogFragment() {
         }
     }
 
+
     private fun showResult(res: UploadResponse) {
         if(res.message=="berhasil terupload"){
             Toast.makeText(requireActivity(), res.message, Toast.LENGTH_SHORT).show()
+
             dismiss()
 
 

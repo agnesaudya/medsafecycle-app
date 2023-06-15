@@ -1,5 +1,6 @@
 package com.example.medsafecycle.home.hospital
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -7,19 +8,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
+import androidx.activity.addCallback
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.medsafecycle.HistoryResponseItem
-import com.example.medsafecycle.R
 import com.example.medsafecycle.UserPreference
 import com.example.medsafecycle.databinding.FragmentHospitalHomeBinding
+import com.example.medsafecycle.detail.hospital.DetailLimbahActivity
 import com.example.medsafecycle.home.popup.HospitalPopup
-import com.example.medsafecycle.home.popup.UploadPopup
 import com.example.medsafecycle.limbah.*
-import com.example.medsafecycle.viewmodel.AuthViewModelFactory
-import com.example.medsafecycle.viewmodel.HistoryViewModel
 import com.example.medsafecycle.viewmodel.HospitalHomeViewModel
 
 class HospitalHomeFragment : Fragment() {
@@ -29,6 +28,16 @@ class HospitalHomeFragment : Fragment() {
     private val hospitalHomeViewModel: HospitalHomeViewModel by viewModels()
     private lateinit var adapter: HospitalHistoryAdapter
     private lateinit var mUserPreference: UserPreference
+    private val detailActivityResultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == HistoryLimbahActivity.DETAIL_ACTIVITY_REQUEST_CODE) {
+                Log.d("hei","testss")
+                hospitalHomeViewModel.getFixedHistory(token = mUserPreference.getToken().toString() )
+                adapter.notifyDataSetChanged()
+
+            }
+        }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,10 +47,12 @@ class HospitalHomeFragment : Fragment() {
         _binding = FragmentHospitalHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         setUpButton()
 
@@ -77,15 +88,28 @@ class HospitalHomeFragment : Fragment() {
 
         binding.cameraButton.setOnClickListener {
             val hospitalPopup = HospitalPopup()
+            hospitalPopup.setOnDismissListener {
+                hospitalHomeViewModel.getFixedHistory(token = mUserPreference.getToken().toString() )
+                adapter.notifyDataSetChanged()
+
+            }
             hospitalPopup.show(parentFragmentManager,"hospital_upload_popup")
+
         }
+
+
     }
 
     private fun setRv(listHistory: List<HistoryResponseItem>) {
         adapter = HospitalHistoryAdapter(listHistory)
+        adapter.setOnItemClickCallback(object : HospitalHistoryAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: HistoryResponseItem) {
+                val intentDetail = Intent(requireActivity(), DetailLimbahActivity::class.java)
+                intentDetail.putExtra("waste_id",data.wasteId)
+                detailActivityResultLauncher.launch(intentDetail)
+            }
+        })
         binding.recyclerView.adapter = adapter
-
-
 
     }
 
@@ -107,7 +131,7 @@ class HospitalHomeFragment : Fragment() {
     private fun setUpButton() {
         binding.toHistoryButton.setOnClickListener {
             val moveIntent = Intent(requireContext(), HistoryLimbahActivity::class.java)
-            startActivity(moveIntent)
+            detailActivityResultLauncher.launch(moveIntent)
         }
     }
 

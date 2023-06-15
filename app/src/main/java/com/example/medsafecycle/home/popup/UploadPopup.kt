@@ -79,6 +79,8 @@ class UploadPopup : DialogFragment() {
             }?.let { popupViewModel.insert(it) }
 
 
+
+
         }else{
             Toast.makeText(requireActivity(), "Tidak berhasil terupload", Toast.LENGTH_SHORT).show()
 

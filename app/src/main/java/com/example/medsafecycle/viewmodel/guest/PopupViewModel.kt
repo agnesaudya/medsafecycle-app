@@ -19,13 +19,17 @@ class PopupViewModel(application: Application) : ViewModel(){
     private val limbahRepository: GuestLimbahRepository = GuestLimbahRepository(application)
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
-    private val _scanResponse = MutableLiveData<UploadResponse>()
+    private var _scanResponse = MutableLiveData<UploadResponse>()
     val scanResponse: LiveData<UploadResponse> = _scanResponse
+
 
     companion object{
         private const val TAG = "PopupViewModel"
     }
-
+    fun resetValues() {
+        _isLoading.value = false
+        _scanResponse  = MutableLiveData<UploadResponse>()
+    }
     fun insert(limbah: GuestLimbah) {
         limbahRepository.insert(limbah)
     }

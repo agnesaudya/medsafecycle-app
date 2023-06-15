@@ -22,7 +22,7 @@ class HospitalHomeViewModel: ViewModel() {
 
 
     fun getFixedHistory(token: String) {
-        val client = ApiConfig.getApiServiceWithToken(token).getFixedLimbah(offset = 1, size = 3)
+        val client = ApiConfig.getApiServiceWithToken(token).getFixedLimbah(offset = 0, size = 3)
         _isLoading.value = true
 
         client.enqueue(object : Callback<List<HistoryResponseItem>> {
