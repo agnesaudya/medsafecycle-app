@@ -21,5 +21,5 @@ class GuestLimbahRepository(application: Application) {
         executorService.execute { guestLimbahDao.delete(guestLimbah) }
     }
 
-    fun getLimbahById(id: Int): LiveData<GuestLimbah> = guestLimbahDao.getLimbahById(id)
+    fun getLimbahById(id: Long): LiveData<GuestLimbah> = guestLimbahDao.getLimbahById(id)
 }

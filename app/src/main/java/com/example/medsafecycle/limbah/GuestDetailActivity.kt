@@ -14,6 +14,10 @@ import com.example.medsafecycle.viewmodel.GuestViewModelFactory
 
 class GuestDetailActivity : AppCompatActivity() {
     private lateinit var guestDetailViewModel: GuestDetailViewModel
+    private lateinit var jenisLimbah:TextView
+    private lateinit var cara_pembuangan:TextView
+    private lateinit var deskripsi_limbah:TextView
+    private lateinit var delete:CardView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_guest_detail)
@@ -21,17 +25,47 @@ class GuestDetailActivity : AppCompatActivity() {
         guestDetailViewModel = obtainViewModel(this@GuestDetailActivity)
 
         val done : CardView = findViewById(R.id.selesai)
+        jenisLimbah = findViewById(R.id.jenis_limbah)
+        cara_pembuangan = findViewById(R.id.cara_pembuangan)
+        delete = findViewById(R.id.delete)
+        deskripsi_limbah = findViewById(R.id.deskripsi_limbah)
         done.setOnClickListener {
             finish()
         }
-        val waste_id = intent.getStringExtra("waste_id")
 
-        if (waste_id != null) {
-            manageToolbar(waste_id)
+
+        val waste_id = intent.getLongExtra("waste_id",0)
+
+        guestDetailViewModel.getLimbahById(waste_id).observe(this){
+                limbah ->
+            if (limbah  != null) {
+                jenisLimbah.text=limbah.name
+                deskripsi_limbah.text=limbah.description
+                val bulletList = StringBuilder()
+                for (item in limbah.extermination){
+                    bulletList.append("\u2022 $item\n")
+                }
+
+                cara_pembuangan.text=bulletList.toString()
+
+                delete.setOnClickListener{
+                    guestDetailViewModel.delete(limbah)
+                    finish()
+                }
+            }
         }
+
+
+
+
+
+
+
+        manageToolbar()
+
     }
 
-    private fun manageToolbar(waste_id:String){
+    private fun manageToolbar(){
         val toolbar : Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 

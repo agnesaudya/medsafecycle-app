@@ -37,14 +37,21 @@
         android:theme="@style/Theme.MedSafeCycle"
         tools:targetApi="31">
         <activity
-            android:name=".GuestDetailActivity"
+            android:name=".limbah.GuestDetailActivity"
             android:exported="false" />
         <activity
             android:name=".limbah.LimbahNotFoundActivity"
             android:exported="false" />
         <activity
             android:name=".home.hospital.HospitalHomeActivityBase"
-            android:exported="false" />
+            android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
+        </activity>
         <activity
             android:name=".perusahaan.ListCompaniesActivity"
             android:exported="false" />
@@ -69,11 +76,11 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
 
         <provider

@@ -4,50 +4,48 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.medsafecycle.AuthResponse
-import com.example.medsafecycle.ProfileResponse
+import com.example.medsafecycle.HistoryResponse
+import com.example.medsafecycle.HistoryResponseItem
 import com.example.medsafecycle.config.ApiConfig
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ProfileViewModel: ViewModel(){
+class HospitalHomeViewModel: ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
-    private val _profileResponse = MutableLiveData<ProfileResponse>()
-    val profileResponse: LiveData<ProfileResponse> = _profileResponse
+    private val _historyResponse = MutableLiveData<List<HistoryResponseItem>>()
+    val historyResponse: LiveData<List<HistoryResponseItem>> = _historyResponse
 
     companion object{
-        private const val TAG = "ProfileViewModel"
+        private const val TAG = "HospitalHomeViewModel"
     }
-    fun getUserinfo(token: String) {
-        val client = ApiConfig.getApiServiceWithToken(token).getProfile()
+    fun getFixedHistory(token: String) {
+        val client = ApiConfig.getApiServiceWithToken(token).getFixedLimbah(offset = 1, size = 3)
         _isLoading.value = true
 
-
-        client.enqueue(object : Callback<ProfileResponse> {
+        client.enqueue(object : Callback<List<HistoryResponseItem>> {
             override fun onResponse(
-                call: Call<ProfileResponse>,
-                response: Response<ProfileResponse>
+                call: Call<List<HistoryResponseItem>>,
+                response: Response<List<HistoryResponseItem>>
             ) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
-                        _profileResponse.value = responseBody!!
+                        _historyResponse.value = responseBody!!
 
                     }
                 } else {
 
                     Log.e(TAG, "onFailure: ${response.message()}")
-                    Log.e(TAG, "onFailure: ${response.errorBody()}")
+                    Log.e(TAG, "onFailure: ${response.errorBody()?.string()}")
 
-                    _profileResponse.value = ProfileResponse(username = null, userAddress = null, userEmail = null)
-
+                    _historyResponse.value = emptyList()
                 }
             }
-            override fun onFailure(call: Call<ProfileResponse>, t: Throwable) {
+            override fun onFailure(call: Call<List<HistoryResponseItem>>, t: Throwable) {
                 _isLoading.value = false
                 Log.e(TAG, "onFailure: ${t.message}")
             }

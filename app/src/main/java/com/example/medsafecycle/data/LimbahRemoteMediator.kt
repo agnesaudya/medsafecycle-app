@@ -1,12 +1,12 @@
 package com.example.medsafecycle.data
 
+import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.example.medsafecycle.HistoryResponseItem
-import com.example.medsafecycle.LimbahResponse
 import com.example.medsafecycle.config.ApiService
 import com.example.medsafecycle.database.LimbahDatabase
 import com.example.medsafecycle.database.RemoteKeys
@@ -30,6 +30,7 @@ class LimbahRemoteMediator(
         loadType: LoadType,
         state: PagingState<Int, HistoryResponseItem>
     ): MediatorResult {
+        Log.d("test",loadType.name.toString())
         val page = when (loadType) {
             LoadType.REFRESH -> {
                 val remoteKeys = getRemoteKeyClosestToCurrentPosition(state)
@@ -48,9 +49,11 @@ class LimbahRemoteMediator(
                 nextKey
             }
         }
+
         return try {
-            val responseData = apiService.getAllHistory(token = token, size = state.config.pageSize, offset = page)
-            val endOfPaginationReached = responseData.historyResponse.isEmpty()
+            val responseData = apiService.getAllHistory(token, state.config.pageSize, page)
+
+            val endOfPaginationReached = responseData.isEmpty()
             database.withTransaction {
                 if (loadType == LoadType.REFRESH) {
                     database.remoteKeysDao().deleteRemoteKeys()
@@ -58,14 +61,16 @@ class LimbahRemoteMediator(
                 }
                 val prevKey = if (page == 1) null else page - 1
                 val nextKey = if (endOfPaginationReached) null else page + 1
-                val keys = responseData.historyResponse.map {
+                val keys = responseData.map {
+                    Log.d("test",it.wasteId.toString())
                     RemoteKeys(id = it.wasteId, prevKey = prevKey, nextKey = nextKey)
                 }
                 database.remoteKeysDao().insertAll(keys)
-                database.limbahDao().insertLimbah(responseData.historyResponse)
+                database.limbahDao().insertLimbah(responseData)
             }
             MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
         } catch (exception: Exception) {
+            Log.d("test",exception.message.toString())
             MediatorResult.Error(exception)
         }
     }

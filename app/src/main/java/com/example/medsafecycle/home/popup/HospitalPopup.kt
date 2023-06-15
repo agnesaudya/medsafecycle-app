@@ -1,6 +1,7 @@
 package com.example.medsafecycle.home.popup
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
@@ -10,30 +11,39 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.viewModels
-import com.example.medsafecycle.AuthResponse
-import com.example.medsafecycle.R
-import com.example.medsafecycle.createCustomTempFile
+import androidx.lifecycle.ViewModelProvider
+import com.example.medsafecycle.*
+import com.example.medsafecycle.UserPreference
 import com.example.medsafecycle.limbah.LimbahNotFoundActivity
-import com.example.medsafecycle.uriToFile
+import com.example.medsafecycle.viewmodel.AuthViewModelFactory
+import com.example.medsafecycle.viewmodel.GuestViewModelFactory
+import com.example.medsafecycle.viewmodel.HospitalPopupViewModel
 import com.example.medsafecycle.viewmodel.PopupViewModel
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 
 class HospitalPopup : DialogFragment() {
     private var getFile: File? = null
     private lateinit var bgImage: ImageView
     private lateinit var progressBar: ProgressBar
-    private val popupViewModel by viewModels<PopupViewModel>()
+    private lateinit var mUserPreference: UserPreference
+    private val hospitalPopupViewModel: HospitalPopupViewModel by viewModels()
     companion object {
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
         private const val REQUEST_CODE_PERMISSIONS = 10
@@ -57,19 +67,16 @@ class HospitalPopup : DialogFragment() {
         }
     }
 
-    private fun showResult(res: AuthResponse) {
-        if(res.status=="berhasil terupload"){
+    private fun showResult(res: UploadResponse) {
+        if(res.message=="berhasil terupload"){
             Toast.makeText(requireActivity(), res.message, Toast.LENGTH_SHORT).show()
+            dismiss()
 
 
         }else{
             Toast.makeText(requireActivity(), "Tidak berhasil terupload", Toast.LENGTH_SHORT).show()
-
             redirectResultNotFound()
-            // TODO : Tambahan avel buat bikin home. Ubah ajaa gapapa
-//            val moveIntent = Intent(requireActivity(), HospitalHomeActivityBase::class.java)
-//            startActivity(moveIntent)
-//            requireActivity().finish()
+
         }
     }
 
@@ -98,7 +105,6 @@ class HospitalPopup : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
                 requireActivity(),
@@ -106,11 +112,33 @@ class HospitalPopup : DialogFragment() {
                 REQUEST_CODE_PERMISSIONS
             )
         }
+
+
+        mUserPreference = UserPreference(requireActivity())
+
+        hospitalPopupViewModel.isLoading.observe(this) {
+            showLoading(it)
+        }
+
+        hospitalPopupViewModel.scanResponse.observe(this) {
+            showResult(it)
+        }
+
         val btnGallery: Button? = view.findViewById(R.id.btnGallery)
         val btnCamera = view.findViewById<Button>(R.id.btnCamera)
         val textCancel = view.findViewById<ImageView>(R.id.closeButton)
+        val btnUpload = view.findViewById<Button>(R.id.btnScan)
+
+
         progressBar = view.findViewById(R.id.progressBar)
         bgImage = view.findViewById(R.id.scan_img)
+
+
+        btnUpload?.setOnClickListener{
+            scanImage()
+            val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
 
         btnGallery?.setOnClickListener {
             startGallery()
@@ -129,6 +157,26 @@ class HospitalPopup : DialogFragment() {
 
 
     }
+
+
+    private fun scanImage() {
+        if (getFile != null) {
+            val file = reduceFileImage(getFile as File)
+            val requestImageFile = file.asRequestBody("image/jpeg".toMediaType())
+            val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
+                "file",
+                file.name,
+                requestImageFile
+            )
+            mUserPreference.getToken()?.let { hospitalPopupViewModel.scan(it,imageMultipart) }
+
+
+
+        } else {
+            Toast.makeText(requireActivity(), "Please, choose or take a photo first.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 
     private fun startGallery() {
         val intent = Intent()

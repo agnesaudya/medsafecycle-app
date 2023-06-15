@@ -5,11 +5,9 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 data class HistoryResponse(
-
 	@field:SerializedName("HistoryResponse")
-	val historyResponse: List<HistoryResponseItem>
+	val historyResponse: List<HistoryResponseItem>?
 )
-
 @Entity(tableName = "limbah")
 data class HistoryResponseItem(
 

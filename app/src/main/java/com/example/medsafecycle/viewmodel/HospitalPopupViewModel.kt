@@ -1,39 +1,35 @@
 package com.example.medsafecycle.viewmodel
 
-import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.example.medsafecycle.HistoryResponseItem
 import com.example.medsafecycle.UploadResponse
 import com.example.medsafecycle.config.ApiConfig
-import com.example.medsafecycle.database.GuestLimbah
-import com.example.medsafecycle.database.GuestLimbahRepository
+import com.example.medsafecycle.database.LimbahRepository
 import com.google.gson.Gson
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PopupViewModel(application: Application) : ViewModel(){
-    private val limbahRepository: GuestLimbahRepository = GuestLimbahRepository(application)
+class HospitalPopupViewModel(): ViewModel(){
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
     private val _scanResponse = MutableLiveData<UploadResponse>()
     val scanResponse: LiveData<UploadResponse> = _scanResponse
 
     companion object{
-        private const val TAG = "PopupViewModel"
+        private const val TAG = "HospitalPopupViewModel"
     }
-
-    fun insert(limbah: GuestLimbah) {
-        limbahRepository.insert(limbah)
-    }
-    fun scan(image: MultipartBody.Part) {
-        Log.d("test",image.body.toString())
+    fun scan(token:String, image: MultipartBody.Part) {
         _isLoading.value = true
-        var client =  ApiConfig.getApiServiceNoToken().scanImage(image)
+        var client =  ApiConfig.getApiServiceWithToken(token).scanImage(image)
+
 
 
         client.enqueue(object : Callback<UploadResponse> {
@@ -54,7 +50,6 @@ class PopupViewModel(application: Application) : ViewModel(){
                     Log.e(TAG, "onFailure: ${response.errorBody()}")
                     val gson = Gson()
                     val errorResponse: UploadResponse = gson.fromJson(response.errorBody()?.string(), UploadResponse::class.java)
-                    Log.d(TAG, errorResponse.message)
                     _scanResponse.value = UploadResponse(message = errorResponse.message, wasteInformation = null)
 
                 }

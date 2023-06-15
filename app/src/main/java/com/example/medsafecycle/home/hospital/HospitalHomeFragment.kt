@@ -3,21 +3,32 @@ package com.example.medsafecycle.home.hospital
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.medsafecycle.HistoryResponseItem
 import com.example.medsafecycle.R
+import com.example.medsafecycle.UserPreference
 import com.example.medsafecycle.databinding.FragmentHospitalHomeBinding
-import com.example.medsafecycle.limbah.HistoryLimbahActivity
-import com.example.medsafecycle.limbah.HistoryLimbahAdapter
-import com.example.medsafecycle.limbah.LimbahDummy
-import com.example.medsafecycle.limbah.LimbahNotFoundActivity
+import com.example.medsafecycle.home.popup.HospitalPopup
+import com.example.medsafecycle.home.popup.UploadPopup
+import com.example.medsafecycle.limbah.*
+import com.example.medsafecycle.viewmodel.AuthViewModelFactory
+import com.example.medsafecycle.viewmodel.HistoryViewModel
+import com.example.medsafecycle.viewmodel.HospitalHomeViewModel
 
 class HospitalHomeFragment : Fragment() {
 
     private var _binding: FragmentHospitalHomeBinding? = null
     private val binding get() = _binding!!
+    private val hospitalHomeViewModel: HospitalHomeViewModel by viewModels()
+    private lateinit var adapter: HospitalHistoryAdapter
+    private lateinit var mUserPreference: UserPreference
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,7 +44,20 @@ class HospitalHomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpButton()
-        setUpRecyclerView()
+
+        val layoutManager = LinearLayoutManager(requireActivity())
+        binding.recyclerView.layoutManager = layoutManager
+        mUserPreference = UserPreference(requireActivity())
+        hospitalHomeViewModel.getFixedHistory(token = mUserPreference.getToken().toString() )
+        hospitalHomeViewModel.historyResponse.observe(viewLifecycleOwner) {listScan ->
+            setRv(listScan)
+        }
+        hospitalHomeViewModel.isLoading.observe(viewLifecycleOwner) {
+            showLoading(it)
+        }
+
+
+
 
         binding.redirectNearestWasteCompany.setOnClickListener {
             val query = "Perusahaan Limbah Medis Terdekat"
@@ -51,27 +75,32 @@ class HospitalHomeFragment : Fragment() {
 
         }
 
-        // TODO : Ganti aja ye
         binding.cameraButton.setOnClickListener {
-            redirectResultNotFound()
+            val hospitalPopup = HospitalPopup()
+            hospitalPopup.show(parentFragmentManager,"hospital_upload_popup")
         }
     }
 
-    private fun redirectResultNotFound() {
-        val i = Intent(requireContext(), LimbahNotFoundActivity::class.java)
-        startActivity(i)
+    private fun setRv(listHistory: List<HistoryResponseItem>) {
+        val adapter = HospitalHistoryAdapter(listHistory)
+        binding.recyclerView.adapter = adapter
+
+
     }
+
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.GONE
+        }
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-    }
-
-    private fun setUpRecyclerView() {
-        binding.recyclerView.setHasFixedSize(true)
-
-        list.addAll(getListDummy())
-        showRecyclerList()
     }
 
     private fun setUpButton() {
@@ -81,32 +110,7 @@ class HospitalHomeFragment : Fragment() {
         }
     }
 
-    // TODO : Jangan lupa sesuain ini sama output API, terutama bagian pas nambahin list
-    private fun showRecyclerList() {
-        val listAdapter = HistoryLimbahAdapter(list)
-        binding.recyclerView.adapter = listAdapter
-    }
 
-    // TODO : Ini buat bikin dummy. Nanti hapus ini dan di values.strings.xml
 
-    private val list = ArrayList<LimbahDummy>()
-    private fun getListDummy(): ArrayList<LimbahDummy> {
-
-        val dataJenis = resources.getStringArray(R.array.data_jenis)
-        val dataTanggal = resources.getStringArray(R.array.data_tanggal)
-
-        val listDummy = ArrayList<LimbahDummy>()
-        for (i in dataJenis.indices) {
-            val dummy = LimbahDummy(dataJenis[i], dataTanggal[i])
-            listDummy.add(dummy)
-        }
-
-        // TODO : Di halaman ini cuma perlu max 3, nanti sesuain yaa
-        if (listDummy.size > 3) {
-            return ArrayList(listDummy.subList(0, 3))
-        } else {
-            return listDummy
-        }
-    }
 
 }

@@ -12,7 +12,7 @@ class LimbahRepository(private val limbahDatabase:LimbahDatabase, private val ap
         @OptIn(ExperimentalPagingApi::class)
         return Pager(
             config = PagingConfig(
-                pageSize = 3
+                pageSize = 5,
             ),
             remoteMediator = LimbahRemoteMediator(limbahDatabase, apiService, token),
             pagingSourceFactory = {

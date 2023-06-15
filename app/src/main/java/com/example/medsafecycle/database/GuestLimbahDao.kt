@@ -3,6 +3,7 @@ package com.example.medsafecycle.database
 import androidx.lifecycle.LiveData
 import androidx.room.*
 
+@Dao
 interface GuestLimbahDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(guestLimbah: GuestLimbah)
@@ -10,8 +11,8 @@ interface GuestLimbahDao {
     fun update(guestLimbah: GuestLimbah)
     @Delete
     fun delete(guestLimbah: GuestLimbah)
-    @Query("SELECT * from guestlimbah")
+    @Query("SELECT * from GuestLimbah")
     fun getAllLimbah(): LiveData<List<GuestLimbah>>
-    @Query("SELECT * FROM guestlimbah WHERE id = :id")
-    fun getLimbahById(id: Int): LiveData<GuestLimbah>
+    @Query("SELECT * FROM GuestLimbah WHERE id = :id")
+    fun getLimbahById(id: Long): LiveData<GuestLimbah>
 }

@@ -51,15 +51,28 @@ class GuestHomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
 
 
-
         supportActionBar?.hide()
 
         guestHomeViewModel = obtainViewModel(this)
         setUpButton()
-        setUpRecyclerView()
 
         textRedirect = findViewById(R.id.redirect_nearest_hospital)
         cameraButton = findViewById(R.id.camera_button)
+
+        guestHomeViewModel.getAllLimbah().observe(this){
+                limbahList ->
+            if (limbahList  != null) {
+                adapter.setListLimbah(limbahList)
+                adapter.notifyDataSetChanged()
+            }
+        }
+
+        rvLimbah = findViewById(R.id.recyclerView)
+
+        adapter = GuestHistoryLimbahAdapter()
+        rvLimbah.layoutManager = LinearLayoutManager(this)
+        rvLimbah.setHasFixedSize(true)
+        rvLimbah.adapter = adapter
 
 
         textRedirect.setOnClickListener {
@@ -84,7 +97,6 @@ class GuestHomeActivity : AppCompatActivity() {
             finish()
         }
 
-        // TODO : Button gua pake buat redirectNotFound, ganti ae
         cameraButton.setOnClickListener {
             val uploadPopup = UploadPopup()
             uploadPopup.show(supportFragmentManager,"upload_popup")
@@ -93,65 +105,19 @@ class GuestHomeActivity : AppCompatActivity() {
     }
 
 
-    private fun setUpRecyclerView(){
-        rvLimbah = findViewById(R.id.recyclerView)
-        rvLimbah.setHasFixedSize(true)
-
-//        list.addAll(getListDummy())
-        showRecyclerList()
-    }
-
     private fun setUpButton(){
         val toHistory: TextView = findViewById(R.id.to_history_button)
         toHistory.setOnClickListener {
-            val moveIntent = Intent(this@GuestHomeActivity, HistoryLimbahActivity::class.java)
-            startActivity(moveIntent)
+//            val moveIntent = Intent(this@GuestHomeActivity, HistoryLimbahActivity::class.java)
+//            startActivity(moveIntent)
         }
-    }
-
-
-
-
-    // TODO : Jangan lupa sesuain ini sama output API, terutama bagian pas nambahin list
-    private fun showRecyclerList() {
-        rvLimbah.layoutManager = LinearLayoutManager(this)
-        guestHomeViewModel.getAllLimbah().observe(this){
-            limbahList ->
-            if (limbahList  != null) {
-                adapter.setListLimbah(limbahList)
-            }
-        }
-
-        adapter = GuestHistoryLimbahAdapter()
-
-        rvLimbah.adapter = adapter
     }
 
     private fun obtainViewModel(activity: AppCompatActivity): GuestHomeViewModel {
         val factory = GuestViewModelFactory.getInstance(activity.application)
-        return ViewModelProvider(activity, factory).get(GuestHomeViewModel::class.java)
+        return ViewModelProvider(activity, factory)[GuestHomeViewModel::class.java]
     }
 
-//     TODO : Ini buat bikin dummy. Nanti hapus ini dan di values.strings.xml
 
-//    private val list = ArrayList<GuestLimbah>()
-//    private fun getListDummy(): ArrayList<LimbahDummy> {
-//
-//        val dataJenis = resources.getStringArray(R.array.data_jenis)
-//        val dataTanggal = resources.getStringArray(R.array.data_tanggal)
-//
-//        val listDummy = ArrayList<LimbahDummy>()
-//        for (i in dataJenis.indices) {
-//            val dummy = LimbahDummy(dataJenis[i],dataTanggal[i])
-//            listDummy.add(dummy)
-//        }
-//
-//        // TODO : Di halaman ini cuma perlu max 3, nanti sesuain yaa
-//        if(listDummy.size > 3){
-//            return ArrayList(listDummy.subList(0, 3))
-//        } else {
-//            return listDummy
-//        }
-//    }
 
 }

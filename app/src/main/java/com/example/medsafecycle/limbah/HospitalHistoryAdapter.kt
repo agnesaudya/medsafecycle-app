@@ -6,24 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.medsafecycle.HistoryResponseItem
 import com.example.medsafecycle.R
-import com.example.medsafecycle.database.GuestLimbah
-import com.example.medsafecycle.helper.GuestLimbahDiffCallback
 
+class HospitalHistoryAdapter(private val listLimbah: List<HistoryResponseItem>) : RecyclerView.Adapter<HospitalHistoryAdapter.ListViewHolder>() {
 
-class GuestHistoryLimbahAdapter : RecyclerView.Adapter<GuestHistoryLimbahAdapter.ListViewHolder>() {
-    private val listLimbah= ArrayList<GuestLimbah>()
-        fun setListLimbah(listGuestLimbah: List<GuestLimbah>) {
-            val diffCallback = GuestLimbahDiffCallback(this.listLimbah, listLimbah)
-            val diffResult = DiffUtil.calculateDiff(diffCallback)
-            this.listLimbah.clear()
-            this.listLimbah.addAll(listGuestLimbah)
-            diffResult.dispatchUpdatesTo(this)
-        }
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val tvJenis: TextView = itemView.findViewById(R.id.jenis_limbah)
@@ -40,21 +29,16 @@ class GuestHistoryLimbahAdapter : RecyclerView.Adapter<GuestHistoryLimbahAdapter
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val limbah = listLimbah[position]
-        holder.tvTanggal.text = limbah.createdAt
-        holder.tvJenis.text = limbah.name
+        holder.tvTanggal.text = limbah.wasteType
+        holder.tvJenis.text = limbah.createdAt
         Glide.with(holder.itemView)
-            .load(limbah.imagePath)
+            .load(limbah.imageLink)
             .into(holder.tvImage)
-
-        // TODO : Di sini blom ditambahin buat imageViewnya
 
 
         holder.itemView.setOnClickListener {
-
-            // TODO : Kalo mau get lagi dari API, ganti lagi aja yaa cara kerjanya
-
-            val intentDetail = Intent(holder.itemView.context, GuestDetailActivity::class.java)
-            intentDetail.putExtra("waste_id", limbah.id) // Example: Passing limbah id
+            val intentDetail = Intent(holder.itemView.context, DetailLimbahActivity::class.java)
+            intentDetail.putExtra("waste_id",limbah.wasteId)
             holder.itemView.context.startActivity(intentDetail)
         }
     }

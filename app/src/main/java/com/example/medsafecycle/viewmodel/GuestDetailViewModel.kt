@@ -14,6 +14,6 @@ class GuestDetailViewModel(application: Application): ViewModel() {
         limbahRepository.delete(limbah)
     }
 
-    fun getLimbahById(id: Int): LiveData<GuestLimbah> =limbahRepository.getLimbahById(id)
+    fun getLimbahById(id: Long): LiveData<GuestLimbah> =limbahRepository.getLimbahById(id)
 
 }

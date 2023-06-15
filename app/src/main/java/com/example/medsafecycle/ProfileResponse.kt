@@ -10,6 +10,6 @@ data class ProfileResponse(
 	@field:SerializedName("user_address")
 	val userAddress: String?,
 
-	@field:SerializedName("username")
+	@field:SerializedName("user_name")
 	val username: String?
 )

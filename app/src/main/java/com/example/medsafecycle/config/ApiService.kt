@@ -2,7 +2,7 @@ package com.example.medsafecycle.config
 
 import com.example.medsafecycle.*
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -25,8 +25,6 @@ interface ApiService {
     ): Call<AuthResponse>
 
 
-    //
-//
     @Multipart
     @POST("upload")
     fun scanImage(
@@ -34,18 +32,27 @@ interface ApiService {
     ): Call<UploadResponse>
 
 
-    //
     @GET("history/{size}/{offset}")
     suspend fun getAllHistory(
         @Header("x-access-token") token: String,
         @Path("size") size: Number,
         @Path("offset") offset: Number
-    ): HistoryResponse
+    ): List<HistoryResponseItem>
+
+    @GET("history/{size}/{offset}")
+    fun getFixedLimbah(
+        @Path("size") size: Number,
+        @Path("offset") offset: Number
+    ): Call<List<HistoryResponseItem>>
+
 
     @GET("wastes/{waste_id}")
-    fun getLimbah(@Path("waste_id") id: String): Call<LimbahResponse>
+    fun getLimbah(@Path("waste_id") id: Long): Call<LimbahResponse>
 
-    @GET("myprofile}")
+    @DELETE("wastes/{waste_id}")
+    fun deleteLimbah(@Path("waste_id") id: Long):Call<ResponseBody>
+
+    @GET("myprofile")
     fun getProfile(): Call<ProfileResponse>
 
 

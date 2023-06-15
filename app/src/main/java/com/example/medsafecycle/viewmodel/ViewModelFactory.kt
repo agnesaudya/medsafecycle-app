@@ -41,6 +41,8 @@ class GuestViewModelFactory(private val mApplication: Application) : ViewModelPr
             return GuestDetailViewModel(mApplication) as T
         }else if(modelClass.isAssignableFrom(GuestHomeViewModel::class.java)) {
             return GuestHomeViewModel(mApplication) as T
+        }else if(modelClass.isAssignableFrom(PopupViewModel::class.java)) {
+            return PopupViewModel(mApplication) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
     }

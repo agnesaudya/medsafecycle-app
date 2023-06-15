@@ -1,11 +1,12 @@
 package com.example.medsafecycle.database
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 @Database(entities = [GuestLimbah::class], version = 1)
+@TypeConverters(GuestLimbahTypeConverters::class)
 abstract class GuestLimbahDatabase : RoomDatabase() {
 
     abstract fun favoriteUserDao(): GuestLimbahDao
@@ -23,6 +24,20 @@ abstract class GuestLimbahDatabase : RoomDatabase() {
             }
             return INSTANCE as GuestLimbahDatabase
         }
+    }
+
+}
+
+class GuestLimbahTypeConverters {
+    @TypeConverter
+    fun fromString(value: String): List<String> {
+        val listType = object : TypeToken<List<String>>() {}.type
+        return Gson().fromJson(value, listType)
+    }
+
+    @TypeConverter
+    fun toString(list: List<String>): String {
+        return Gson().toJson(list)
     }
 
 }

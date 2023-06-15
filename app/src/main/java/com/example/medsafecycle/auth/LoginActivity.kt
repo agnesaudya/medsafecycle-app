@@ -29,14 +29,6 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         mUserPreference = UserPreference(this)
-        Log.d("test",mUserPreference.getToken().toString())
-//        checkForm(mUserPreference)
-//        if (!isPreferenceEmpty) {
-//            val moveIntent = Intent(this@LoginActivity, AllStoriesActivity::class.java)
-//            startActivity(moveIntent)
-//            finish()
-//
-//        }
 
         loginViewModel.isLoading.observe(this) {
             showLoading(it)
@@ -45,6 +37,7 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel.loginResponse.observe(this) {
             showResult(it)
         }
+
 
 
         binding.button.setOnClickListener {
@@ -80,11 +73,6 @@ class LoginActivity : AppCompatActivity() {
         }else{
             Toast.makeText(this, res.message, Toast.LENGTH_SHORT).show()
             saveToken(res.data?.token.toString())
-//            val moveIntent = Intent(this@LoginActivity, AllStoriesActivity::class.java)
-//            startActivity(moveIntent)
-//            finish()
-
-            // TODO : Tambahan avel buat bikin home. Ubah ajaa gapapa
             val moveIntent = Intent(this@LoginActivity, HospitalHomeActivityBase::class.java)
             startActivity(moveIntent)
             finish()
@@ -94,7 +82,7 @@ class LoginActivity : AppCompatActivity() {
     private fun saveToken(token:String) {
         val tokenPreference = UserPreference(this)
         tokenPreference.setToken(token)
-        Toast.makeText(this, "User saved", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "User login", Toast.LENGTH_SHORT).show()
     }
 
     private fun showLoading(isLoading: Boolean) {
