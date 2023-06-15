@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -69,26 +70,25 @@ class UploadPopup : DialogFragment() {
     private fun showResult(res: UploadResponse) {
         if(res.message=="berhasil terupload"){
             Toast.makeText(requireActivity(), res.message, Toast.LENGTH_SHORT).show()
-            res.wasteInformation?.let {
-                imagePath?.let { it1 ->
-                    GuestLimbah(name = it.name,
-                        description = it.description, extermination = res.wasteInformation.extermination, imagePath = it1,
-                        createdAt = DateHelper.getCurrentDate()
-                    )
-                }
-            }?.let { popupViewModel.insert(it) }
 
-
-
+            // If name is null, object not detected
+            if(res.wasteInformation?.name == null){
+                redirectResultNotFound()
+            } else {
+                res.wasteInformation?.let {
+                    imagePath?.let { it1 ->
+                        GuestLimbah(name = it.name,
+                            description = it.description, extermination = res.wasteInformation.extermination, imagePath = it1,
+                            createdAt = DateHelper.getCurrentDate()
+                        )
+                    }
+                }?.let { popupViewModel.insert(it) }
+            }
 
         }else{
             Toast.makeText(requireActivity(), "Tidak berhasil terupload", Toast.LENGTH_SHORT).show()
 
             redirectResultNotFound()
-            // TODO : Tambahan avel buat bikin home. Ubah ajaa gapapa
-//            val moveIntent = Intent(requireActivity(), HospitalHomeActivityBase::class.java)
-//            startActivity(moveIntent)
-//            requireActivity().finish()
         }
     }
 
