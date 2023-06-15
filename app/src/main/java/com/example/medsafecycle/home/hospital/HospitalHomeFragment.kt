@@ -43,14 +43,19 @@ class HospitalHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setUpButton()
-
         val layoutManager = LinearLayoutManager(requireActivity())
         binding.recyclerView.layoutManager = layoutManager
         mUserPreference = UserPreference(requireActivity())
         hospitalHomeViewModel.getFixedHistory(token = mUserPreference.getToken().toString() )
         hospitalHomeViewModel.historyResponse.observe(viewLifecycleOwner) {listScan ->
             setRv(listScan)
+            if(listScan.isEmpty()){
+                binding.notFound.visibility = View.VISIBLE
+                binding.toHistoryButton.visibility = View.INVISIBLE
+            } else {
+                binding.notFound.visibility = View.GONE
+                setUpButton()
+            }
         }
         hospitalHomeViewModel.isLoading.observe(viewLifecycleOwner) {
             showLoading(it)
@@ -84,9 +89,6 @@ class HospitalHomeFragment : Fragment() {
     private fun setRv(listHistory: List<HistoryResponseItem>) {
         adapter = HospitalHistoryAdapter(listHistory)
         binding.recyclerView.adapter = adapter
-
-
-
     }
 
 
@@ -105,6 +107,7 @@ class HospitalHomeFragment : Fragment() {
     }
 
     private fun setUpButton() {
+        binding.toHistoryButton.visibility = View.VISIBLE
         binding.toHistoryButton.setOnClickListener {
             val moveIntent = Intent(requireContext(), HistoryLimbahActivity::class.java)
             startActivity(moveIntent)
