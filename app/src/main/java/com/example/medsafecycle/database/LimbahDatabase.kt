@@ -8,7 +8,7 @@ import com.example.medsafecycle.HistoryResponseItem
 
 @Database(
     entities = [HistoryResponseItem::class, RemoteKeys::class],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class LimbahDatabase : RoomDatabase() {

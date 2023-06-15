@@ -5,6 +5,7 @@ import androidx.paging.*
 import com.example.medsafecycle.HistoryResponseItem
 import com.example.medsafecycle.LimbahResponse
 import com.example.medsafecycle.config.ApiService
+import com.example.medsafecycle.data.HistoryPagingSource
 import com.example.medsafecycle.data.LimbahRemoteMediator
 
 class LimbahRepository(private val limbahDatabase:LimbahDatabase, private val apiService: ApiService, private val token:String) {
@@ -12,11 +13,11 @@ class LimbahRepository(private val limbahDatabase:LimbahDatabase, private val ap
         @OptIn(ExperimentalPagingApi::class)
         return Pager(
             config = PagingConfig(
-                pageSize = 3,
+                pageSize = 1,
             ),
-            remoteMediator = LimbahRemoteMediator(limbahDatabase, apiService, token),
+//            remoteMediator = LimbahRemoteMediator(limbahDatabase, apiService, token),
             pagingSourceFactory = {
-                limbahDatabase.limbahDao().getAllLimbah()
+               HistoryPagingSource(apiService, token)
             }
         ).liveData
     }
