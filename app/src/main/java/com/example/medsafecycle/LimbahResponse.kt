@@ -14,7 +14,7 @@ data class LimbahResponse(
     val wasteType: String?,
 
     @field:SerializedName("waste_type_id")
-    val wasteTypeId: String?
+    val wasteTypeId: Long?
 )
 
 data class WasteInfo(

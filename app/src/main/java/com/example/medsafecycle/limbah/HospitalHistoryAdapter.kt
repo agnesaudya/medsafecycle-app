@@ -1,5 +1,6 @@
 package com.example.medsafecycle.limbah
 
+import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -37,9 +38,12 @@ class HospitalHistoryAdapter(private val listLimbah: List<HistoryResponseItem>) 
 
 
         holder.itemView.setOnClickListener {
+
             val intentDetail = Intent(holder.itemView.context, DetailLimbahActivity::class.java)
             intentDetail.putExtra("waste_id",limbah.wasteId)
             holder.itemView.context.startActivity(intentDetail)
+
+
         }
     }
 

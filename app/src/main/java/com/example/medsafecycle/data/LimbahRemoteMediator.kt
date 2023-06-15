@@ -30,6 +30,7 @@ class LimbahRemoteMediator(
         loadType: LoadType,
         state: PagingState<Int, HistoryResponseItem>
     ): MediatorResult {
+        Log.d("test",state.pages.toString())
         Log.d("test",loadType.name.toString())
         val page = when (loadType) {
             LoadType.REFRESH -> {

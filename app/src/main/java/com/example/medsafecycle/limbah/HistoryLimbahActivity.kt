@@ -59,6 +59,8 @@ class HistoryLimbahActivity : AppCompatActivity() {
 
         historyViewModel.history.observe(this) {
             adapter.submitData(lifecycle, it)
+
+
         }
     }
 
@@ -82,6 +84,5 @@ class HistoryLimbahActivity : AppCompatActivity() {
         toolbar.addView(customToolbar)
     }
 
-    // TODO : Jangan lupa sesuain ini sama output API, terutama bagian pas nambahin list
 
 }

@@ -1,16 +1,21 @@
 package com.example.medsafecycle.limbah
 
 import android.content.Intent
+import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
+import com.bumptech.glide.Glide
 import com.example.medsafecycle.LimbahResponse
 import com.example.medsafecycle.ProfileResponse
 
@@ -28,6 +33,7 @@ class DetailLimbahActivity : AppCompatActivity() {
     private lateinit var delete:CardView
     private lateinit var mUserPreference: UserPreference
     private lateinit var progressBar:ProgressBar
+    private lateinit var image:ImageView
     private val detailViewModel by viewModels<DetailViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +47,7 @@ class DetailLimbahActivity : AppCompatActivity() {
         jenisLimbah = findViewById(R.id.jenis_limbah)
         cara_pembuangan = findViewById(R.id.cara_pembuangan)
         delete = findViewById(R.id.delete)
+        image = findViewById(R.id.limbah_photo_detail)
         progressBar = findViewById(R.id.progressBar)
         deskripsi_limbah = findViewById(R.id.deskripsi_limbah)
         done.setOnClickListener {
@@ -52,12 +59,22 @@ class DetailLimbahActivity : AppCompatActivity() {
 
         detailViewModel.getLimbah(waste_id,mUserPreference.getToken().toString())
 
+        detailViewModel.deleteRes.observe(this) {
+            Toast.makeText(this, "${it}", Toast.LENGTH_SHORT).show()
+        }
         detailViewModel.isLoading.observe(this) {
             showLoading(it)
         }
 
-        detailViewModel.limbahResponse.observe(this) {
-            showResult(it)
+        detailViewModel.limbahResponse.observe(this) {limbah->
+            showResult(limbah)
+        }
+
+        delete.setOnClickListener{
+            detailViewModel.delete(waste_id, mUserPreference.getToken().toString())
+//            val intentDetail = Intent(this, HistoryLimbahActivity::class.java)
+//            startActivity(intentDetail)
+            finish()
         }
 
 
@@ -73,7 +90,16 @@ class DetailLimbahActivity : AppCompatActivity() {
 
         jenisLimbah.text=res.wasteType
         deskripsi_limbah.text= res.wasteInformation?.description ?: ""
-//                cara_pembuangan.text=limbah.extermination
+        val bulletList = StringBuilder()
+        for (item in res.wasteInformation?.extermination!!){
+            bulletList.append("\u2022 $item\n")
+        }
+
+        cara_pembuangan.text=bulletList.toString()
+        Glide.with(this)
+            .load(res.imageLink)
+            .into(image)
+
 
     }
 

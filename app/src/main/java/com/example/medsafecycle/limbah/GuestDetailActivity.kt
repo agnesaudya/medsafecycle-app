@@ -4,13 +4,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.example.medsafecycle.R
 import com.example.medsafecycle.viewmodel.GuestDetailViewModel
 import com.example.medsafecycle.viewmodel.GuestViewModelFactory
+import java.io.File
 
 class GuestDetailActivity : AppCompatActivity() {
     private lateinit var guestDetailViewModel: GuestDetailViewModel
@@ -18,6 +21,7 @@ class GuestDetailActivity : AppCompatActivity() {
     private lateinit var cara_pembuangan:TextView
     private lateinit var deskripsi_limbah:TextView
     private lateinit var delete:CardView
+    private lateinit var image: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_guest_detail)
@@ -26,6 +30,7 @@ class GuestDetailActivity : AppCompatActivity() {
 
         val done : CardView = findViewById(R.id.selesai)
         jenisLimbah = findViewById(R.id.jenis_limbah)
+        image = findViewById(R.id.limbah_photo_detail)
         cara_pembuangan = findViewById(R.id.cara_pembuangan)
         delete = findViewById(R.id.delete)
         deskripsi_limbah = findViewById(R.id.deskripsi_limbah)
@@ -47,6 +52,9 @@ class GuestDetailActivity : AppCompatActivity() {
                 }
 
                 cara_pembuangan.text=bulletList.toString()
+                Glide.with(this)
+                    .load(File(limbah.imagePath))
+                    .into(image)
 
                 delete.setOnClickListener{
                     guestDetailViewModel.delete(limbah)

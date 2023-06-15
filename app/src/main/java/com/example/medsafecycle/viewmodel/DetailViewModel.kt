@@ -16,7 +16,8 @@ class DetailViewModel: ViewModel() {
     val isLoading: LiveData<Boolean> = _isLoading
     private val _limbahResponse = MutableLiveData<LimbahResponse>()
     val limbahResponse: LiveData<LimbahResponse> = _limbahResponse
-    private val _deleteRes = MutableLiveData<ResponseBody>()
+    private val _deleteRes= MutableLiveData<String>()
+    val deleteRes: LiveData<String> = _deleteRes
 
 
     companion object{
@@ -41,7 +42,7 @@ class DetailViewModel: ViewModel() {
                     }
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
-                    Log.e(TAG, "onFailure: ${response.errorBody()}")
+                    Log.e(TAG, "onFailure: ${response.errorBody()?.string()}")
                     _limbahResponse.value = LimbahResponse(wasteInformation = null, wasteType = null, wasteTypeId = null, imageLink = null)
 
                 }
@@ -53,35 +54,35 @@ class DetailViewModel: ViewModel() {
         })
     }
 
-//    fun deleteLimbah(limbah_id: Long, token:String){
-//        val client = ApiConfig.getApiServiceWithToken(token).deleteLimbah(limbah_id)
-//        _isLoading.value = true
-//
-//
-//        client.enqueue(object : Callback<ResponseBody> {
-//            override fun onResponse(
-//                call: Call<ResponseBody>,
-//                response: Response<ResponseBody>
-//            ) {
-//                _isLoading.value = false
-//                if (response.isSuccessful) {
-//                    val responseBody = response.body()
-//                    if (responseBody != null) {
-//                        _limbahResponse.value = responseBody!!
-//
-//                    }
-//                } else {
-//                    Log.e(TAG, "onFailure: ${response.message()}")
-//                    Log.e(TAG, "onFailure: ${response.errorBody()}")
-//                    _limbahResponse.value = ResponseBody()
-//
-//                }
-//            }
-//            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-//                _isLoading.value = false
-//                Log.e(TAG, "onFailure: ${t.message}")
-//            }
-//        })
-//
-//    }
+    fun delete(limbah_id: Long, token:String){
+        val client = ApiConfig.getApiServiceWithToken(token).deleteLimbah(limbah_id)
+        _isLoading.value = true
+
+
+        client.enqueue(object : Callback<ResponseBody> {
+            override fun onResponse(
+                call: Call<ResponseBody>,
+                response: Response<ResponseBody>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    if (responseBody != null) {
+                        Log.d(TAG, "onSuccess: ${response.code()}")
+                        _deleteRes.value = responseBody.string()
+                    }
+                } else {
+                    Log.e(TAG, "onFailure: ${response.message()}")
+                    Log.e(TAG, "onFailure: ${response.errorBody()?.string()}")
+
+
+                }
+            }
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                _isLoading.value = false
+                Log.e(TAG, "onFailure: ${t.message}")
+            }
+        })
+
+    }
 }

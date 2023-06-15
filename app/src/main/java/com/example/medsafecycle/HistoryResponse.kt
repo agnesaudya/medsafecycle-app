@@ -4,10 +4,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-data class HistoryResponse(
-	@field:SerializedName("HistoryResponse")
-	val historyResponse: List<HistoryResponseItem>?
-)
 @Entity(tableName = "limbah")
 data class HistoryResponseItem(
 
@@ -20,7 +16,7 @@ data class HistoryResponseItem(
 
 	@PrimaryKey
 	@field:SerializedName("waste_id")
-	val wasteId: Int,
+	val wasteId: Long,
 
 	@field:SerializedName("waste_type")
 	val wasteType: String

@@ -82,8 +82,9 @@ class HospitalHomeFragment : Fragment() {
     }
 
     private fun setRv(listHistory: List<HistoryResponseItem>) {
-        val adapter = HospitalHistoryAdapter(listHistory)
+        adapter = HospitalHistoryAdapter(listHistory)
         binding.recyclerView.adapter = adapter
+
 
 
     }

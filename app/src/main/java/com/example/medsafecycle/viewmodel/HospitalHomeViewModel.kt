@@ -4,10 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.medsafecycle.HistoryResponse
 import com.example.medsafecycle.HistoryResponseItem
 import com.example.medsafecycle.config.ApiConfig
-import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,6 +19,8 @@ class HospitalHomeViewModel: ViewModel() {
     companion object{
         private const val TAG = "HospitalHomeViewModel"
     }
+
+
     fun getFixedHistory(token: String) {
         val client = ApiConfig.getApiServiceWithToken(token).getFixedLimbah(offset = 1, size = 3)
         _isLoading.value = true

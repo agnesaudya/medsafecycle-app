@@ -13,7 +13,9 @@ interface ApiService {
     fun register(
         @Field("email") email: String,
         @Field("name") name: String,
-        @Field("password") password: String
+        @Field("password") password: String,
+        @Field("address") address: String,
+        @Field("type") type: Number
     ): Call<AuthResponse>
 
 
