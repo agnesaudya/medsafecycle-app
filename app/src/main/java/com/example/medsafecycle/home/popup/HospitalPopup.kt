@@ -182,7 +182,7 @@ class HospitalPopup : DialogFragment(), DialogInterface.OnDismissListener{
 
 
         } else {
-            Toast.makeText(requireActivity(), "Please, choose or take a photo first.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireActivity(), "Silahkan, pilih foto terlebih dahulu.", Toast.LENGTH_SHORT).show()
         }
     }
 

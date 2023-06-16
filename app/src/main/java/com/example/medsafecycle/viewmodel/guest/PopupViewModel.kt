@@ -19,8 +19,8 @@ class PopupViewModel(application: Application) : ViewModel(){
     private val limbahRepository: GuestLimbahRepository = GuestLimbahRepository(application)
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
-    private var _scanResponse = MutableLiveData<UploadResponse>()
-    val scanResponse: LiveData<UploadResponse> = _scanResponse
+    private var _scanResponse = MutableLiveData<UploadResponse?>()
+    val scanResponse: MutableLiveData<UploadResponse?> = _scanResponse
 
 
     companion object{
@@ -28,7 +28,7 @@ class PopupViewModel(application: Application) : ViewModel(){
     }
     fun resetValues() {
         _isLoading.value = false
-        _scanResponse  = MutableLiveData<UploadResponse>()
+        _scanResponse.value=null
     }
     fun insert(limbah: GuestLimbah) {
         limbahRepository.insert(limbah)

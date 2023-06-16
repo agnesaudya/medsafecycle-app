@@ -52,8 +52,9 @@
         app:layout_constraintBottom_toTopOf="@+id/btnScan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_place_holder"
         app:layout_constraintTop_toTopOf="@id/closeButton"
-        tools:srcCompat="@tools:sample/avatars" />
+        />
 
     <Button
         android:id="@+id/btnGallery"

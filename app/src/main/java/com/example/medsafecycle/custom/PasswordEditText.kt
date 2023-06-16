@@ -24,7 +24,7 @@ class PasswordEditText  : AppCompatEditText, View.OnTouchListener {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        hint = "Enter Your Password"
+        hint = "Masukkan Password"
         textAlignment = TEXT_ALIGNMENT_VIEW_START
     }
 
@@ -40,7 +40,7 @@ class PasswordEditText  : AppCompatEditText, View.OnTouchListener {
             }
             override fun afterTextChanged(s: Editable) {
                 isPasswordValid = if(s.toString().length<8){
-                    error = "Password must be longer than 8 characters"
+                    error = "Password tidak bisa kurang dari 8 karakter"
                     false
                 }else{
                     true

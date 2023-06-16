@@ -90,8 +90,9 @@ class GuestHomeActivity : AppCompatActivity() {
         }
 
         cameraButton.setOnClickListener {
-            val uploadPopup = UploadPopup()
+            var uploadPopup = UploadPopup()
             uploadPopup.show(supportFragmentManager,"upload_popup")
+
         }
 
     }

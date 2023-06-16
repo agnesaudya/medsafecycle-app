@@ -31,7 +31,7 @@ class EmailEditText : AppCompatEditText, View.OnTouchListener {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        hint = "Enter your email"
+        hint = "Masukkan Email"
         textAlignment = TEXT_ALIGNMENT_VIEW_START
     }
 
@@ -53,7 +53,7 @@ class EmailEditText : AppCompatEditText, View.OnTouchListener {
                 val isValid = email != null && pattern.matcher(email).matches()
                 if (!isValid) {
                     isEmailValid = false
-                    error = "Email is not valid"
+                    error = "Email tidak valid"
                 } else {
                     isEmailValid = true
 

@@ -2,6 +2,7 @@ package com.example.medsafecycle.home.popup
 
 import android.Manifest
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
@@ -36,12 +37,11 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 
-class UploadPopup : DialogFragment() {
+class UploadPopup : DialogFragment(){
     private var getFile: File? = null
     private lateinit var bgImage: ImageView
     private var imagePath: String? = null
     private lateinit var progressBar: ProgressBar
-
     private lateinit var popupViewModel: PopupViewModel
 
     companion object {
@@ -67,11 +67,15 @@ class UploadPopup : DialogFragment() {
         }
     }
 
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        popupViewModel.resetValues()
+    }
+
     private fun showResult(res: UploadResponse) {
         if(res.message=="berhasil terupload"){
             Toast.makeText(requireActivity(), res.message, Toast.LENGTH_SHORT).show()
 
-            // If name is null, object not detected
             if(res.wasteInformation?.name == null){
                 redirectResultNotFound()
             } else {
@@ -134,7 +138,9 @@ class UploadPopup : DialogFragment() {
         }
 
         popupViewModel.scanResponse.observe(this) {
-            showResult(it)
+            if (it != null) {
+                showResult(it)
+            }
         }
 
         val btnGallery: Button? = view.findViewById(R.id.btnGallery)
@@ -163,6 +169,7 @@ class UploadPopup : DialogFragment() {
 
         textCancel?.setOnClickListener {
             dismiss()
+
         }
 
 
@@ -182,7 +189,7 @@ class UploadPopup : DialogFragment() {
 
 
         } else {
-            Toast.makeText(requireActivity(), "Please, choose or take a photo first.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireActivity(), "Silahkan, pilih foto terlebih dahulu.", Toast.LENGTH_SHORT).show()
         }
     }
 
