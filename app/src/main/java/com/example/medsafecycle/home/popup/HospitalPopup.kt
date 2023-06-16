@@ -78,7 +78,6 @@ class HospitalPopup : DialogFragment(), DialogInterface.OnDismissListener{
     private fun showResult(res: UploadResponse) {
         if(res.message=="berhasil terupload"){
             Toast.makeText(requireActivity(), res.message, Toast.LENGTH_SHORT).show()
-
             dismiss()
 
 
