@@ -54,7 +54,7 @@ class PopupViewModel(application: Application) : ViewModel(){
                     }
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
-                    Log.e(TAG, "onFailure: ${response.errorBody()}")
+                    Log.e(TAG, "onFailure: ${response.errorBody()?.string()}")
                     val gson = Gson()
                     val errorResponse: UploadResponse = gson.fromJson(response.errorBody()?.string(), UploadResponse::class.java)
                     Log.d(TAG, errorResponse.message)
@@ -64,6 +64,7 @@ class PopupViewModel(application: Application) : ViewModel(){
             }
             override fun onFailure(call: Call<UploadResponse>, t: Throwable) {
                 _isLoading.value = false
+                _scanResponse.value = UploadResponse(message = "Terjadi kesalahan", wasteInformation = null)
                 Log.e(TAG, "onFailure: ${t.message}")
             }
         })

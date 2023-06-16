@@ -13,7 +13,6 @@ class LimbahRepository(private val limbahDatabase:LimbahDatabase, private val ap
             config = PagingConfig(
                 pageSize = 5,
             ),
-//            remoteMediator = LimbahRemoteMediator(limbahDatabase, apiService, token),
             pagingSourceFactory = {
                HistoryPagingSource(apiService, token)
             }

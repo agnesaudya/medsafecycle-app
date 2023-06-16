@@ -35,6 +35,7 @@
                 android:id="@+id/limbah_photo_detail_container"
                 android:layout_width="match_parent"
                 android:layout_height="260dp"
+                app:layout_constraintBottom_toTopOf="@+id/title_jenis"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -43,7 +44,7 @@
                 <ImageView
                     android:id="@+id/limbah_photo_detail"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/foto_limbah_placeholder" />
 
