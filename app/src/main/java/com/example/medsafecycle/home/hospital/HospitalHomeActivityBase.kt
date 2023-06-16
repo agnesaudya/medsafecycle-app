@@ -16,18 +16,10 @@ import com.example.medsafecycle.landing.LandingActivity
 class HospitalHomeActivityBase : AppCompatActivity() {
 
     private lateinit var binding: ActivityHospitalHomeBaseBinding
-    private lateinit var mUserPreference: UserPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mUserPreference = UserPreference(this)
 
-        if (mUserPreference.getToken().toString().isEmpty()) {
-            val moveIntent = Intent(this, LandingActivity::class.java)
-            startActivity(moveIntent)
-            finish()
-
-        }
         binding = ActivityHospitalHomeBaseBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
