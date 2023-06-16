@@ -81,7 +81,7 @@ class HospitalPopup : DialogFragment(), DialogInterface.OnDismissListener{
             dismiss()
 
 
-        }else{
+        }else if(res.message=="Terjadi kesalahan"){
             Toast.makeText(requireActivity(), "Tidak berhasil terupload", Toast.LENGTH_SHORT).show()
             redirectResultNotFound()
 

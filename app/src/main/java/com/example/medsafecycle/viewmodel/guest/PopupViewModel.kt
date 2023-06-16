@@ -64,6 +64,7 @@ class PopupViewModel(application: Application) : ViewModel(){
             }
             override fun onFailure(call: Call<UploadResponse>, t: Throwable) {
                 _isLoading.value = false
+
                 _scanResponse.value = UploadResponse(message = "Terjadi kesalahan", wasteInformation = null)
                 Log.e(TAG, "onFailure: ${t.message}")
             }

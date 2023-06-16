@@ -87,9 +87,10 @@ class UploadPopup : DialogFragment(){
                         )
                     }
                 }?.let { popupViewModel.insert(it) }
+                dismiss()
             }
 
-        }else{
+        }else if(res.message=="Terjadi kesalahan"){
             Toast.makeText(requireActivity(), "Tidak berhasil terupload", Toast.LENGTH_SHORT).show()
 
             redirectResultNotFound()
@@ -185,7 +186,6 @@ class UploadPopup : DialogFragment(){
                 requestImageFile
             )
             popupViewModel.scan(imageMultipart)
-
 
 
         } else {
