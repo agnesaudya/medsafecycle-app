@@ -1,13 +1,16 @@
 package com.example.medsafecycle.limbah
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.medsafecycle.HistoryResponseItem
 import com.example.medsafecycle.databinding.ResizedHistoryItemBinding
+import com.example.medsafecycle.helper.DateHelper
 import com.example.medsafecycle.limbah.HistoryLimbahAdapter.ViewHolder.Companion.DIFF_CALLBACK
 
 
@@ -48,7 +51,7 @@ class HistoryLimbahAdapter: PagingDataAdapter<HistoryResponseItem, HistoryLimbah
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: HistoryResponseItem) {
 
-            binding.tanggalUpload.text = data.createdAt
+            binding.tanggalUpload.text = DateHelper.dateParser(data.createdAt)
             binding.jenisLimbah.text = data.wasteType
 
             Glide.with(itemView.context)

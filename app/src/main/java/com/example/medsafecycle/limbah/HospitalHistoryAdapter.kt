@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.medsafecycle.HistoryResponseItem
 import com.example.medsafecycle.databinding.HistoryItemBinding
-
+import com.example.medsafecycle.helper.DateHelper
 
 
 class HospitalHistoryAdapter(private val listLimbah: List<HistoryResponseItem>) : RecyclerView.Adapter<HospitalHistoryAdapter.ViewHolder>() {
@@ -43,7 +43,7 @@ class HospitalHistoryAdapter(private val listLimbah: List<HistoryResponseItem>) 
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: HistoryResponseItem) {
 
-            binding.tanggalUpload.text = data.createdAt
+            binding.tanggalUpload.text = DateHelper.dateParser(data.createdAt)
             binding.jenisLimbah.text = data.wasteType
 
             Glide.with(itemView.context)
