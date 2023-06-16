@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import com.example.medsafecycle.home.hospital.HospitalHomeActivityBase
 import com.example.medsafecycle.landing.LandingActivity
 
@@ -15,7 +16,9 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
         setContentView(R.layout.activity_main_guest)
         mUserPreference = UserPreference(this)
+
         Handler().postDelayed({
+            Log.d("test",mUserPreference.getToken().toString())
             if (mUserPreference.getToken().toString().isEmpty()) {
                 val moveIntent = Intent(this, LandingActivity::class.java)
                 startActivity(moveIntent)

@@ -37,7 +37,11 @@ class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
             val name = binding.myNameText.text.toString()
             val address = binding.myAddressText.text.toString()
 
-            // Type 0 = Hospital, current registration only support hospital user
+
+            if (name.isEmpty() || pwd.isEmpty() || email.isEmpty() || address.isEmpty()) {
+                Toast.makeText(this, "Semua field harus diisi", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             registerViewModel.register(email,name,pwd,address,0)
 
 
