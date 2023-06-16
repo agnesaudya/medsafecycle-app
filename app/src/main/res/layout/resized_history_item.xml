@@ -29,6 +29,7 @@
                 android:id="@+id/foto_limbah"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/placeholder_img" />
         </androidx.cardview.widget.CardView>
 
